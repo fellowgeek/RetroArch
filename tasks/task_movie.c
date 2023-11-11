@@ -267,7 +267,8 @@ static bool bsv_movie_start_record(input_driver_state_t * input_st, char *path)
       return false;
    }
 
-   bsv_movie_enqueue(input_st, state, BSV_FLAG_MOVIE_RECORDING);
+   input_st->bsv_movie_state_handle         = state;
+   input_st->bsv_movie_state.flags         |= BSV_FLAG_MOVIE_RECORDING;
    movie_rec_str                            = msg_hash_to_str(MSG_STARTING_MOVIE_RECORD_TO);
    _len = strlcpy(msg, movie_rec_str, sizeof(msg));
    snprintf(msg + _len, sizeof(msg) - _len, " \"%s\".", path);
@@ -292,7 +293,8 @@ static bool bsv_movie_start_playback(input_driver_state_t *input_st, char *path)
       return false;
    }
 
-   bsv_movie_enqueue(input_st, state, BSV_FLAG_MOVIE_PLAYBACK);
+   input_st->bsv_movie_state_handle         = state;
+   input_st->bsv_movie_state.flags         |= BSV_FLAG_MOVIE_PLAYBACK;
    starting_movie_str                       =
       msg_hash_to_str(MSG_STARTING_MOVIE_PLAYBACK);
 
@@ -378,7 +380,7 @@ bool movie_stop_playback(input_driver_state_t *input_st)
          NULL, MESSAGE_QUEUE_ICON_DEFAULT, MESSAGE_QUEUE_CATEGORY_INFO);
    RARCH_LOG("%s\n", movie_playback_end_str);
 
-   bsv_movie_deinit_full(input_st);
+   bsv_movie_deinit(input_st);
 
    input_st->bsv_movie_state.flags &= ~(
          BSV_FLAG_MOVIE_END
@@ -395,7 +397,7 @@ bool movie_stop_record(input_driver_state_t *input_st)
          2, 180, true,
          NULL, MESSAGE_QUEUE_ICON_DEFAULT, MESSAGE_QUEUE_CATEGORY_INFO);
    RARCH_LOG("%s\n", movie_rec_stopped_str);
-   bsv_movie_deinit_full(input_st);
+   bsv_movie_deinit(input_st);
    input_st->bsv_movie_state.flags &= ~(
          BSV_FLAG_MOVIE_END
          | BSV_FLAG_MOVIE_RECORDING);

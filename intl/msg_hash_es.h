@@ -6376,7 +6376,7 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_SUBLABEL_MENU_WALLPAPER,
-   "Selecciona una imagen a usar como fondo del menú. Las imágenes manuales y dinámicas tendrán prioridad sobre el tema de colores."
+   "Selecciona una imagen para usar como fondo del menú."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MENU_WALLPAPER_OPACITY,
@@ -6469,9 +6469,9 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_MODE,
    "Salida del servicio de IA"
    )
-MSG_HASH(
+MSG_HASH( /* FIXME What does the Narrator mode do? */
    MENU_ENUM_SUBLABEL_AI_SERVICE_MODE,
-   "Muestra las traducciones como una imagen superpuesta (Modo Imagen), audio directo (Voz), texto a voz (Narración) o una superposición de texto (Texto)."
+   "Muestra la traducción como una superposición de texto (imagen) o reproduce una conversión de texto a voz (voz)."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_URL,
@@ -6512,30 +6512,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_SUBLABEL_AI_SERVICE_TARGET_LANG,
    "Indica el idioma de destino de la traducción. En caso de seleccionar «Predeterminado», se traducirá a inglés."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_POLL_DELAY,
-   "Retraso al autosondear con el servicio de IA"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_POLL_DELAY,
-   "Indica el retraso mínimo (en ms) entre cada llamada automática. Reduce la reactividad, pero mejora el rendimiento de la CPU."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION,
-   "Personalizar posición de textos del servicio de IA"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_TEXT_POSITION,
-   "Personaliza la posición de la superposición del modo Texto del servicio de IA."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_PADDING,
-   "Relleno de textos del servicio de IA (%)"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_TEXT_PADDING,
-   "Indica el relleno vertical que se añadirá a la superposición de textos cuando el servicio de IA esté configurado en el modo Texto. Si hay más relleno, el texto se desplazará hacia el centro de la pantalla."
    )
 
 /* Settings > Accessibility */
@@ -9741,26 +9717,6 @@ MSG_HASH(
    "Modo narrador"
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_MODE,
-   "Modo Texto"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_NARRATOR_MODE,
-   "Texto + Narración"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_IMAGE_NARRATOR_MODE,
-   "Imagen + Narración"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_BOTTOM,
-   "Giro de 180°"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_TOP,
-   "Inicio"
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_ENTRY_REMOVE_ENABLE_HIST_FAV,
    "Historial y favoritos"
    )
@@ -11973,7 +11929,7 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_RUN_MUSIC,
-   "Reproducir en visor de medios"
+   "Iniciar"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SECONDS,
@@ -12512,22 +12468,6 @@ MSG_HASH( /* FIXME Should be MSG_ */
    "Error al instalar el núcleo"
    )
 MSG_HASH(
-   MSG_AI_VIDEO_DRIVER_NOT_SUPPORTED,
-   "El controlador de vídeo no es compatible con el servicio de IA."
-   )
-MSG_HASH(
-   MSG_AI_AUTO_MODE_ENABLED,
-   "Traducción automática activada."
-   )
-MSG_HASH(
-   MSG_AI_AUTO_MODE_DISABLED,
-   "Traducción automática desactivada."
-   )
-MSG_HASH(
-   MSG_AI_NOTHING_TO_TRANSLATE,
-   "No hay nada que traducir."
-   )
-MSG_HASH(
    MSG_CHEAT_DELETE_ALL_INSTRUCTIONS,
    "Pulsa derecha cinco veces para eliminar todos los trucos."
    )
@@ -12979,10 +12919,6 @@ MSG_HASH(
 MSG_HASH(
    MSG_CONTENT_CRC32S_DIFFER,
    "El CRC32 de los contenidos no es idéntico. No se pueden usar juegos distintos."
-   )
-MSG_HASH(
-   MSG_CONTENT_NETPACKET_CRC32S_DIFFER,
-   "El servidor está ejecutando un juego distinto."
    )
 MSG_HASH(
    MSG_PING_TOO_HIGH,
@@ -14635,14 +14571,6 @@ MSG_HASH(
    "Activar el GameMode de Linux podría mejorar la latencia, corregir chasquidos en el audio y maximizar el rendimiento general configurando de forma automática tu CPU y GPU para sacarles el máximo partido.\nEs necesario tener instalado el software GameMode para que esta opción surta efecto. Para más información sobre cómo instalar GameMode, visita https://github.com/FeralInteractive/gamemode (en inglés)."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_FRAME_REST,
-   "Poner fotogramas en reposo"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_VIDEO_FRAME_REST,
-   "Intenta reducir el consumo de CPU de la sincronía vertical poniéndola en espera todo el tiempo posible tras presentar cada fotograma. Opción diseñada principalmente para sincronizarse con filtros de líneas de barrido («scanlines») de terceros."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PAL60_ENABLE,
    "Usar modo PAL60"
    )
@@ -14734,7 +14662,18 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_BRIGHTNESS_CONTROL,
    "Aumenta o reduce el brillo de la pantalla."
    )
-#ifdef HAVE_LIBNX
+
+#ifdef HAVE_LAKKA_SWITCH
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_SWITCH_GPU_PROFILE,
+   "Acelerar GPU"
+   )
+MSG_HASH(
+   MENU_ENUM_SUBLABEL_SWITCH_GPU_PROFILE,
+   "Aumenta o reduce la velocidad de la GPU de Switch."
+   )
+#endif
+#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SWITCH_CPU_PROFILE,
    "Acelerar CPU"
@@ -14789,40 +14728,6 @@ MSG_HASH(
    MENU_ENUM_LABEL_HELP_TIMEZONE,
    "Muestra un listado con las zonas horarias disponibles. Una vez hayas seleccionado una, se ajustará la fecha y la hora a la zona horaria seleccionada. Esta opción asumirá que el reloj del sistema o de tu hardware esté sincronizado con UTC."
    )
-#ifdef HAVE_LAKKA_SWITCH
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_LAKKA_SWITCH_OPTIONS,
-   "Opciones para Nintendo Switch"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_LAKKA_SWITCH_OPTIONS,
-   "Administra las opciones específicas para Nintendo Switch."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_OC_ENABLE,
-   "Acelerar CPU"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_SWITCH_OC_ENABLE,
-   "Permite usar otras frecuencias de reloj con la CPU."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_CEC_ENABLE,
-   "Soporte para CEC"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_SWITCH_CEC_ENABLE,
-   "Activa el protocolo de señales CEC con el televisor en el modo televisor."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_BLUETOOTH_ERTM_DISABLE,
-   "Desactivar ERTM de Bluetooth"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_BLUETOOTH_ERTM_DISABLE,
-   "Desactiva el ERTM de la señal Bluetooth para corregir el emparejamiento de algunos dispositivos."
-   )
-#endif
 MSG_HASH(
    MSG_LOCALAP_SWITCHING_OFF,
    "Desconectando el punto de acceso wifi."
@@ -14859,8 +14764,6 @@ MSG_HASH(
    MSG_LOCALAP_ERROR_CONFIG_PARSE,
    "Archivo de configuración incorrecto: no se encontraron los valores APNAME o PASSWORD en %s"
    )
-#endif
-#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 MSG_HASH(

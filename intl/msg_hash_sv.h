@@ -3793,10 +3793,6 @@ MSG_HASH(
    "Bildläge"
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_BOTTOM,
-   "Botten"
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_ENTRY_REMOVE_ENABLE_ALL,
    "Alla spellistor"
    )
@@ -4516,6 +4512,10 @@ MSG_HASH(
    "Fuskinställningar"
    )
 MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_RUN_MUSIC,
+   "Kör"
+   )
+MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SECONDS,
    "sekunder"
    )
@@ -4962,7 +4962,10 @@ MSG_HASH(
    MSG_LOCAL,
    "Lokal"
    )
-#ifdef HAVE_LIBNX
+
+#ifdef HAVE_LAKKA_SWITCH
+#endif
+#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
 #endif
 #ifdef HAVE_LAKKA
 MSG_HASH(
@@ -4985,10 +4988,6 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_TIMEZONE,
    "Tidszon"
    )
-#ifdef HAVE_LAKKA_SWITCH
-#endif
-#endif
-#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 #endif

@@ -6248,11 +6248,11 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SETTINGS_SHOW_AI_SERVICE,
-   "Afficher 'Service IA'"
+   "Afficher 'Service AI'"
    )
 MSG_HASH(
    MENU_ENUM_SUBLABEL_SETTINGS_SHOW_AI_SERVICE,
-   "Afficher les réglages pour 'Service IA'."
+   "Afficher les réglages pour 'Service AI'."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SETTINGS_SHOW_ACCESSIBILITY,
@@ -6336,7 +6336,7 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_SUBLABEL_MENU_WALLPAPER,
-   "Sélectionner une image à définir comme fond pour le menu. Les images dynamiques et manuelles remplaceront le 'Thème de couleurs'."
+   "Sélectionner une image à définir comme arrière-plan du menu."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MENU_WALLPAPER_OPACITY,
@@ -6429,9 +6429,9 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_MODE,
    "Sortie du service IA "
    )
-MSG_HASH(
+MSG_HASH( /* FIXME What does the Narrator mode do? */
    MENU_ENUM_SUBLABEL_AI_SERVICE_MODE,
-   "Afficher la traduction en surimpression d'image (Mode image), en audio direct (Traduction vocale), en synthèse vocale (Narrateur) ou en superposition de texte (Texte)."
+   "Afficher la traduction en tant que surimpression de texte (mode image), ou lue en tant que Text-To-Speech (mode parole)."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_URL,
@@ -6472,30 +6472,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_SUBLABEL_AI_SERVICE_TARGET_LANG,
    "La langue vers laquelle le service va traduire. 'Par défaut' est anglais."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_POLL_DELAY,
-   "Délai d'interrogation automatique du service IA"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_POLL_DELAY,
-   "Délai minimum en ms entre les appels automatiques. Diminue la réactivité, mais augmente les performances du processeur."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION,
-   "Modification de la position du texte pour le service IA"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_TEXT_POSITION,
-   "Modifier la position de la surimpression, lorsque le service est en mode texte."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_PADDING,
-   "Marge intérieure du texte pour le service IA (%)"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_TEXT_PADDING,
-   "Marge verticale à appliquer au texte en surimpression, lorsque le service est en mode texte. Plus de remplissage poussera le texte vers le centre de l'écran."
    )
 
 /* Settings > Accessibility */
@@ -9654,31 +9630,11 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_SPEECH_MODE,
-   "Mode traduction vocale"
+   "Mode parole"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_NARRATOR_MODE,
    "Mode narrateur"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_MODE,
-   "Mode texte"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_NARRATOR_MODE,
-   "Texte + narrateur"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_IMAGE_NARRATOR_MODE,
-   "Image + narrateur"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_BOTTOM,
-   "Bas"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_TOP,
-   "Haut"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_ENTRY_REMOVE_ENABLE_HIST_FAV,
@@ -11917,7 +11873,7 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_RUN_MUSIC,
-   "Lire dans le lecteur multimédia"
+   "Lancer"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SECONDS,
@@ -12452,22 +12408,6 @@ MSG_HASH( /* FIXME Should be MSG_ */
    "Installation du cœur échouée"
    )
 MSG_HASH(
-   MSG_AI_VIDEO_DRIVER_NOT_SUPPORTED,
-   "Pilote vidéo non pris en charge pour le service IA."
-   )
-MSG_HASH(
-   MSG_AI_AUTO_MODE_ENABLED,
-   "Traduction automatique activée."
-   )
-MSG_HASH(
-   MSG_AI_AUTO_MODE_DISABLED,
-   "Traduction automatique désactivée."
-   )
-MSG_HASH(
-   MSG_AI_NOTHING_TO_TRANSLATE,
-   "Rien à traduire."
-   )
-MSG_HASH(
    MSG_CHEAT_DELETE_ALL_INSTRUCTIONS,
    "Appuyez cinq fois sur Droite pour supprimer tous les cheats."
    )
@@ -12919,10 +12859,6 @@ MSG_HASH(
 MSG_HASH(
    MSG_CONTENT_CRC32S_DIFFER,
    "Le CRC32 du contenu est différent. Impossible d'utiliser des jeux non-identiques."
-   )
-MSG_HASH(
-   MSG_CONTENT_NETPACKET_CRC32S_DIFFER,
-   "L'hôte utilise un jeu différent."
    )
 MSG_HASH(
    MSG_PING_TOO_HIGH,
@@ -14571,14 +14507,6 @@ MSG_HASH(
    "Activer le GameMode de Linux peut améliorer la latence, corriger les problèmes de crépitements audio et maximiser les performances globales en configurant automatiquement votre processeur et votre processeur graphique pour les meilleures performances.\nLe logiciel GameMode doit être installé pour que cela fonctionne. Consultez https://github.com/FeralInteractive/gamemode pour plus d'informations sur l'installation de GameMode."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_FRAME_REST,
-   "Repos de l'image"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_VIDEO_FRAME_REST,
-   "Tenter de réduire l'utilisation processeur pour la synchronisation verticale (vsync) en se mettant le plus possible en veille après la présentation d'images. Conçu principalement pour les systèmes de synchronisation des lignes de balayage tiers."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PAL60_ENABLE,
    "Utiliser le mode PAL60"
    )
@@ -14670,7 +14598,18 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_BRIGHTNESS_CONTROL,
    "Augmenter ou diminuer la luminosité de l'écran."
    )
-#ifdef HAVE_LIBNX
+
+#ifdef HAVE_LAKKA_SWITCH
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_SWITCH_GPU_PROFILE,
+   "Overclocker le processeur graphique"
+   )
+MSG_HASH(
+   MENU_ENUM_SUBLABEL_SWITCH_GPU_PROFILE,
+   "Overclocker ou underclocker le processeur graphique de la Switch."
+   )
+#endif
+#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SWITCH_CPU_PROFILE,
    "Overclocker le processeur"
@@ -14717,40 +14656,6 @@ MSG_HASH(
    MENU_ENUM_LABEL_HELP_TIMEZONE,
    "Affiche une liste des fuseaux horaires disponibles. Après avoir sélectionné un fuseau horaire, la date et l'heure sont ajustées au fuseau horaire sélectionné. Il est supposé que l'horloge système/matérielle est réglée sur UTC."
    )
-#ifdef HAVE_LAKKA_SWITCH
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_LAKKA_SWITCH_OPTIONS,
-   "Options de la Nintendo Switch"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_LAKKA_SWITCH_OPTIONS,
-   "Gérer les options spécifiques à la Nintendo Switch."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_OC_ENABLE,
-   "Overclocker le processeur"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_SWITCH_OC_ENABLE,
-   "Activer les fréquences d'overclock du processeur"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_CEC_ENABLE,
-   "Prise en charge de CEC "
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_SWITCH_CEC_ENABLE,
-   "Activer l'appairage CEC avec la TV lors de la mise dans le dock"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_BLUETOOTH_ERTM_DISABLE,
-   "Désactiver l'ERTM Bluetooth"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_BLUETOOTH_ERTM_DISABLE,
-   "Désactiver l'ERTM Bluetooth pour corriger l'appairage de certains appareils"
-   )
-#endif
 MSG_HASH(
    MSG_LOCALAP_SWITCHING_OFF,
    "Désactivation du point d'accès Wi-Fi."
@@ -14787,8 +14692,6 @@ MSG_HASH(
    MSG_LOCALAP_ERROR_CONFIG_PARSE,
    "Mauvais fichier de configuration - impossible de trouver l'APNAME ou le PASSWORD dans %s"
    )
-#endif
-#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 MSG_HASH(

@@ -1064,12 +1064,9 @@ static bool accessibility_speak_windows(int speed,
       if (!wc || res != 0) 
       {
          RARCH_ERR("Error communicating with NVDA\n");
-         /* Fallback on powershell immediately and retry */
-         g_plat_win32_flags &= ~PLAT_WIN32_FLAG_USE_NVDA;
-         g_plat_win32_flags |= PLAT_WIN32_FLAG_USE_POWERSHELL;
          if (wc)
             free(wc);
-         return accessibility_speak_windows(speed, speak_text, priority);
+         return false;
       }
 
       nvdaController_cancelSpeech_func();

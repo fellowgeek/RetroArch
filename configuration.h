@@ -334,9 +334,6 @@ typedef struct settings
       unsigned ai_service_mode;
       unsigned ai_service_target_lang;
       unsigned ai_service_source_lang;
-      unsigned ai_service_poll_delay;
-      unsigned ai_service_text_position;
-      unsigned ai_service_text_padding;
 
       unsigned core_updater_auto_backup_history_size;
       unsigned video_black_frame_insertion;
@@ -578,7 +575,6 @@ typedef struct settings
       bool video_ctx_scaling;
       bool video_force_aspect;
       bool video_frame_delay_auto;
-      bool video_frame_rest;
       bool video_crop_overscan;
       bool video_aspect_ratio_auto;
       bool video_dingux_ipu_keep_aspect;
@@ -706,11 +702,13 @@ typedef struct settings
       bool menu_core_enable;
       bool menu_show_sublabels;
       bool menu_dynamic_wallpaper_enable;
+      bool menu_throttle;
       bool menu_mouse_enable;
       bool menu_pointer_enable;
       bool menu_navigation_wraparound_enable;
       bool menu_navigation_browser_filter_supported_extensions_enable;
       bool menu_show_advanced_settings;
+      bool menu_throttle_framerate;
       bool menu_linear_filter;
       bool menu_horizontal_animation;
       bool menu_scroll_fast;
@@ -975,11 +973,6 @@ typedef struct settings
       bool screenshots_in_content_dir;
       bool systemfiles_in_content_dir;
       bool ssh_enable;
-#ifdef HAVE_LAKKA_SWITCH
-      bool switch_oc;
-      bool switch_cec;
-      bool bluetooth_ertm_disable;
-#endif
       bool samba_enable;
       bool bluetooth_enable;
       bool localap_enable;

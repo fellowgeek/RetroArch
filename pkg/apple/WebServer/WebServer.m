@@ -29,12 +29,46 @@
         NSString* docsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
 #elif TARGET_OS_TV
         NSString* docsPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+        NSLog(@"Updating BIOS folder.");
+        [self copyDirectory:@"BIOS"];
+
 #endif
         _webUploader = [[GCDWebUploader alloc] initWithUploadDirectory:docsPath];
         _webUploader.allowHiddenItems = YES;
     }
     return self;
 }
+
+-(void)copyDirectory:(NSString *)directory {
+   NSFileManager *fileManager = [NSFileManager defaultManager];
+   NSError *error;
+   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+   NSString *documentsDirectory = [paths objectAtIndex:0];
+   NSString *documentDBFolderPath = [documentsDirectory stringByAppendingPathComponent:directory];
+   NSString *resourceDBFolderPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:directory];
+   
+   if (![fileManager fileExistsAtPath:documentDBFolderPath]) {
+       //Create Directory!
+       [fileManager createDirectoryAtPath:documentDBFolderPath withIntermediateDirectories:NO attributes:nil error:&error];
+   } else {
+       NSLog(@"Directory exists! %@", documentDBFolderPath);
+   }
+
+   NSArray *fileList = [fileManager contentsOfDirectoryAtPath:resourceDBFolderPath error:&error];
+   for (NSString *s in fileList) {
+      NSLog(@"Trying: %@", s);
+      NSString *newFilePath = [documentDBFolderPath stringByAppendingPathComponent:s];
+      NSString *oldFilePath = [resourceDBFolderPath stringByAppendingPathComponent:s];
+      if (![fileManager fileExistsAtPath:newFilePath]) {
+         NSLog(@"Copying: %@", s);
+         //File does not exist, copy it
+         [fileManager copyItemAtPath:oldFilePath toPath:newFilePath error:&error];
+      } else {
+         NSLog(@"File exists: %@", newFilePath);
+      }
+   }
+}
+
 
 -(void)startUploader {
     if ( _webUploader.isRunning ) {

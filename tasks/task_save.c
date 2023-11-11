@@ -62,11 +62,7 @@
 #include "../cheat_manager.h"
 #endif
 
-#ifdef EMSCRIPTEN
-/* Filesystem is in-memory anyway, use huge chunks since each
-   read/write is a possible suspend to JS code */
-#define SAVE_STATE_CHUNK 4096 * 4096
-#elif defined(HAVE_LIBNX) || defined(_3DS)
+#if defined(HAVE_LIBNX) || defined(_3DS)
 #define SAVE_STATE_CHUNK 4096 * 10
 #else
 #define SAVE_STATE_CHUNK 4096

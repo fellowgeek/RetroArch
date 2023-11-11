@@ -73,6 +73,9 @@
 
 #ifdef HAVE_LIBNX
 #include <switch.h>
+#endif
+
+#if defined(HAVE_LAKKA) || defined(HAVE_LIBNX)
 #include "../switch_performance_profiles.h"
 #endif
 
@@ -5239,6 +5242,11 @@ unsigned menu_event(
 
    ok_old                                          = ok_current;
 
+   /* Menu must be alive, and input must be released after menu toggle. */
+   if (     !(menu_st->flags & MENU_ST_FLAG_ALIVE)
+         || menu_st->input_driver_flushing_input > 0)
+      return ret;
+
    /* Get pointer (mouse + touchscreen) input
     * Note: Must be done regardless of menu screensaver
     *       state */
@@ -5627,11 +5635,6 @@ unsigned menu_event(
       if (ret != MENU_ACTION_NOOP)
          menu_st->input_last_time_us = menu_st->current_time_us;
    }
-
-   /* Menu must be alive, and input must be released after menu toggle. */
-   if (     !(menu_st->flags & MENU_ST_FLAG_ALIVE)
-         || menu_st->input_driver_flushing_input > 0)
-      return MENU_ACTION_NOOP;
 
    return ret;
 }
@@ -6266,7 +6269,7 @@ void menu_driver_toggle(
    runloop_state_t *runloop_st        = runloop_state_get_ptr();
    struct menu_state *menu_st         = &menu_driver_state;
    bool runloop_shutdown_initiated    = (runloop_st->flags &
-         RUNLOOP_FLAG_SHUTDOWN_INITIATED) ? true : false;
+      RUNLOOP_FLAG_SHUTDOWN_INITIATED) ? true : false;
 #ifdef HAVE_OVERLAY
    bool input_overlay_hide_in_menu    = false;
    bool input_overlay_enable          = false;
@@ -6277,7 +6280,7 @@ void menu_driver_toggle(
    {
 #ifdef HAVE_NETWORKING
       pause_libretro                  = settings->bools.menu_pause_libretro &&
-            netplay_driver_ctl(RARCH_NETPLAY_CTL_ALLOW_PAUSE, NULL);
+         netplay_driver_ctl(RARCH_NETPLAY_CTL_ALLOW_PAUSE, NULL);
 #else
       pause_libretro                  = settings->bools.menu_pause_libretro;
 #endif
@@ -6285,13 +6288,16 @@ void menu_driver_toggle(
       input_overlay_hide_in_menu      = settings->bools.input_overlay_hide_in_menu;
       input_overlay_enable            = settings->bools.input_overlay_enable;
 #endif
+      video_adaptive_vsync            = settings->bools.video_adaptive_vsync;
    }
 
    if (on)
    {
+#ifndef HAVE_LAKKA_SWITCH
 #ifdef HAVE_LAKKA
       set_cpu_scaling_signal(CPUSCALING_EVENT_FOCUS_MENU);
 #endif
+#endif /* #ifndef HAVE_LAKKA_SWITCH */
 #ifdef HAVE_OVERLAY
       /* If an overlay was displayed before the toggle
        * and overlays are disabled in menu, need to
@@ -6310,9 +6316,11 @@ void menu_driver_toggle(
    }
    else
    {
+#ifndef HAVE_LAKKA_SWITCH
 #ifdef HAVE_LAKKA
       set_cpu_scaling_signal(CPUSCALING_EVENT_FOCUS_CORE);
 #endif
+#endif /* #ifndef HAVE_LAKKA_SWITCH */
 #ifdef HAVE_OVERLAY
       /* Inhibits pointer 'select' and 'cancel' actions
        * (until the next time 'select'/'cancel' are released) */
@@ -6328,26 +6336,23 @@ void menu_driver_toggle(
       IMEnableDim();
 #endif
 
-      menu_st->flags               |= MENU_ST_FLAG_ENTRIES_NEED_REFRESH;
+      menu_st->flags |= MENU_ST_FLAG_ENTRIES_NEED_REFRESH;
 
-      /* Always disable FF & SM when entering menu. */
-      runloop_st->flags            &= ~RUNLOOP_FLAG_FASTMOTION;
-      runloop_st->flags            &= ~RUNLOOP_FLAG_SLOWMOTION;
-#if defined(HAVE_GFX_WIDGETS)
-      video_state_get_ptr()->flags &= ~VIDEO_FLAG_WIDGETS_FAST_FORWARD;
-      video_state_get_ptr()->flags &= ~VIDEO_FLAG_WIDGETS_REWINDING;
-#endif
-      input_state_get_ptr()->flags &= ~INP_FLAG_NONBLOCKING;
-      driver_set_nonblock_state();
-
+      /* Menu should always run with vsync on and
+       * a video swap interval of 1 */
+      if (current_video->set_nonblock_state)
+         current_video->set_nonblock_state(
+               video_driver_data,
+               false,
+               video_driver_test_all_flags(GFX_CTX_FLAGS_ADAPTIVE_VSYNC) &&
+               video_adaptive_vsync,
+               1
+               );
       /* Stop all rumbling before entering the menu. */
       command_event(CMD_EVENT_RUMBLE_STOP, NULL);
 
       if (pause_libretro)
       {
-#ifdef PS2
-         command_event(CMD_EVENT_AUDIO_STOP, NULL);
-#endif
 #ifdef HAVE_MICROPHONE
          command_event(CMD_EVENT_MICROPHONE_STOP, NULL);
 #endif
@@ -6378,9 +6383,6 @@ void menu_driver_toggle(
 
       if (pause_libretro)
       {
-#ifdef PS2
-         command_event(CMD_EVENT_AUDIO_START, NULL);
-#endif
 #ifdef HAVE_MICROPHONE
          command_event(CMD_EVENT_MICROPHONE_START, NULL);
 #endif

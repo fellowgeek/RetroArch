@@ -4,6 +4,8 @@
 <dict>
 	<key>ALTBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>ALTDeviceID</key>
+	<string>$(TARGET_DEVICE_IDENTIFIER)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -51,12 +53,10 @@
 		<string>_altserver._tcp</string>
 		<string>_ra_netplay._tcp</string>
 	</array>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>RetroArch uses the local network to find and communicate with AltServer to enable JIT.</string>
-	<key>ALTDeviceID</key>
-	<string>$(TARGET_DEVICE_IDENTIFIER)</string>
 	<key>NSCameraUsageDescription</key>
 	<string>YES</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>RetroArch uses the local network to find and communicate with AltServer to enable JIT.</string>
 	<key>UIApplicationExitsOnSuspend</key>
 	<false/>
 	<key>UIFileSharingEnabled</key>

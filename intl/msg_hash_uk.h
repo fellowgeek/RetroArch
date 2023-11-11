@@ -3539,6 +3539,10 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_FASTFORWARD_RATIO,
    "Частота перемотування"
    )
+MSG_HASH(
+   MENU_ENUM_SUBLABEL_FASTFORWARD_FRAMESKIP,
+   "Пропускати кадри відповідно до швидкості перемотування. Це економить енергію і дозволяє використовувати сторонні обмежувачі кадрів."
+   )
 
 /* Settings > Frame Throttle > Rewind */
 
@@ -3985,6 +3989,10 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MENU_WALLPAPER,
    "Зображення тла"
+   )
+MSG_HASH(
+   MENU_ENUM_SUBLABEL_MENU_WALLPAPER,
+   "Виберіть зображення для тла меню."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MENU_WALLPAPER_OPACITY,
@@ -5263,10 +5271,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_NARRATOR_MODE,
    "Режим Оповідача"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_TOP,
-   "Верх"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_ENTRY_REMOVE_ENABLE_HIST_FAV,
@@ -6984,6 +6988,10 @@ MSG_HASH(
    "Налаштування чита"
    )
 MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_RUN_MUSIC,
+   "Запустити"
+   )
+MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SECONDS,
    "секунди"
    )
@@ -8234,7 +8242,14 @@ MSG_HASH(
    MSG_LOCAL,
    "Місцеві"
    )
-#ifdef HAVE_LIBNX
+
+#ifdef HAVE_LAKKA_SWITCH
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_SWITCH_GPU_PROFILE,
+   "Розгін GPU"
+   )
+#endif
+#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SWITCH_CPU_PROFILE,
    "Розгін CPU"
@@ -8257,12 +8272,6 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_TIMEZONE,
    "Виберіть свій часовий пояс, щоб налаштувати дату та час відповідно до вашого місцезнаходження."
    )
-#ifdef HAVE_LAKKA_SWITCH
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_OC_ENABLE,
-   "Розгін CPU"
-   )
-#endif
 MSG_HASH(
    MSG_LOCALAP_ALREADY_RUNNING,
    "Точка доступу Wi-Fi вже запущена"
@@ -8271,8 +8280,6 @@ MSG_HASH(
    MSG_LOCALAP_NOT_RUNNING,
    "Точка доступу Wi-Fi не запущена"
    )
-#endif
-#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 MSG_HASH(

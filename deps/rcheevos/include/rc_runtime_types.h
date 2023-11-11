@@ -7,9 +7,6 @@ extern "C" {
 
 #include "rc_error.h"
 
-#include <stddef.h>
-#include <stdint.h>
-
 #ifndef RC_RUNTIME_H /* prevents pedantic redefiniton error */
 
 typedef struct lua_State lua_State;
@@ -31,7 +28,7 @@ typedef struct rc_value_t rc_value_t;
  * num_bytes is greater than 1, the value is read in little-endian from
  * memory.
  */
-typedef uint32_t(*rc_peek_t)(uint32_t address, uint32_t num_bytes, void* ud);
+typedef unsigned (*rc_peek_t)(unsigned address, unsigned num_bytes, void* ud);
 
 /*****************************************************************************\
 | Memory References                                                           |
@@ -60,25 +57,24 @@ enum {
   RC_MEMSIZE_FLOAT,
   RC_MEMSIZE_MBF32,
   RC_MEMSIZE_MBF32_LE,
-  RC_MEMSIZE_FLOAT_BE,
   RC_MEMSIZE_VARIABLE
 };
 
 typedef struct rc_memref_value_t {
   /* The current value of this memory reference. */
-  uint32_t value;
+  unsigned value;
   /* The last differing value of this memory reference. */
-  uint32_t prior;
+  unsigned prior;
 
   /* The size of the value. */
-  uint8_t size;
+  char size;
   /* True if the value changed this frame. */
-  uint8_t changed;
+  char changed;
   /* The value type of the value (for variables) */
-  uint8_t type;
+  char type;
   /* True if the reference will be used in indirection.
    * NOTE: This is actually a property of the rc_memref_t, but we put it here to save space */
-  uint8_t is_indirect;
+  char is_indirect;
 }
 rc_memref_value_t;
 
@@ -87,7 +83,7 @@ struct rc_memref_t {
   rc_memref_value_t value;
 
   /* The memory address of this variable. */
-  uint32_t address;
+  unsigned address;
 
   /* The next memory reference in the chain. */
   rc_memref_t* next;
@@ -115,7 +111,7 @@ typedef struct rc_operand_t {
     rc_memref_t* memref;
 
     /* An integer value. */
-    uint32_t num;
+    unsigned num;
 
     /* A floating point value. */
     double dbl;
@@ -125,10 +121,10 @@ typedef struct rc_operand_t {
   } value;
 
   /* specifies which member of the value union is being used */
-  uint8_t type;
+  char type;
 
   /* the actual RC_MEMSIZE of the operand - memref.size may differ */
-  uint8_t size;
+  char size;
 }
 rc_operand_t;
 
@@ -186,27 +182,27 @@ struct rc_condition_t {
   rc_operand_t operand2;
 
   /* Required hits to fire this condition. */
-  uint32_t required_hits;
+  unsigned required_hits;
   /* Number of hits so far. */
-  uint32_t current_hits;
+  unsigned current_hits;
 
   /* The next condition in the chain. */
   rc_condition_t* next;
 
-  /* The type of the condition. (RC_CONDITION_*) */
-  uint8_t type;
+  /* The type of the condition. */
+  char type;
 
-  /* The comparison operator to use. (RC_OPERATOR_*) */
-  uint8_t oper; /* operator is a reserved word in C++. */
+  /* The comparison operator to use. */
+  char oper; /* operator is a reserved word in C++. */
 
-  /* Set if the condition needs to processed as part of the "check if paused" pass. (bool) */
-  uint8_t pause;
+  /* Set if the condition needs to processed as part of the "check if paused" pass. */
+  char pause;
 
-  /* Whether or not the condition evaluated true on the last check. (bool) */
-  uint8_t is_true;
+  /* Whether or not the condition evaluated true on the last check */
+  char is_true;
 
-  /* Unique identifier of optimized comparator to use. (RC_PROCESSING_COMPARE_*) */
-  uint8_t optimized_comparator;
+  /* Unique identifier of optimized comparator to use */
+  char optimized_comparator;
 };
 
 /*****************************************************************************\
@@ -223,13 +219,13 @@ struct rc_condset_t {
   rc_condition_t* conditions;
 
   /* True if any condition in the set is a pause condition. */
-  uint8_t has_pause;
+  char has_pause;
 
   /* True if the set is currently paused. */
-  uint8_t is_paused;
+  char is_paused;
 
   /* True if the set has indirect memory references. */
-  uint8_t has_indirect_memrefs;
+  char has_indirect_memrefs;
 };
 
 /*****************************************************************************\
@@ -258,22 +254,22 @@ struct rc_trigger_t {
   rc_memref_t* memrefs;
 
   /* The current state of the MEASURED condition. */
-  uint32_t measured_value;
+  unsigned measured_value;
 
   /* The target state of the MEASURED condition */
-  uint32_t measured_target;
+  unsigned measured_target;
 
   /* The current state of the trigger */
-  uint8_t state;
+  char state;
 
   /* True if at least one condition has a non-zero hit count */
-  uint8_t has_hits;
+  char has_hits;
 
   /* True if at least one condition has a non-zero required hit count */
-  uint8_t has_required_hits;
+  char has_required_hits;
 
   /* True if the measured value should be displayed as a percentage */
-  uint8_t measured_as_percent;
+  char measured_as_percent;
 };
 
 int rc_trigger_size(const char* memaddr);
@@ -305,7 +301,7 @@ struct rc_value_t {
 
 int rc_value_size(const char* memaddr);
 rc_value_t* rc_parse_value(void* buffer, const char* memaddr, lua_State* L, int funcs_ndx);
-int32_t rc_evaluate_value(rc_value_t* value, rc_peek_t peek, void* ud, lua_State* L);
+int rc_evaluate_value(rc_value_t* value, rc_peek_t peek, void* ud, lua_State* L);
 
 /*****************************************************************************\
 | Leaderboards                                                                |
@@ -330,12 +326,12 @@ struct rc_lboard_t {
   rc_value_t* progress;
   rc_memref_t* memrefs;
 
-  uint8_t state;
+  char state;
 };
 
 int rc_lboard_size(const char* memaddr);
 rc_lboard_t* rc_parse_lboard(void* buffer, const char* memaddr, lua_State* L, int funcs_ndx);
-int rc_evaluate_lboard(rc_lboard_t* lboard, int32_t* value, rc_peek_t peek, void* peek_ud, lua_State* L);
+int rc_evaluate_lboard(rc_lboard_t* lboard, int* value, rc_peek_t peek, void* peek_ud, lua_State* L);
 void rc_reset_lboard(rc_lboard_t* lboard);
 
 /*****************************************************************************\
@@ -360,7 +356,7 @@ enum {
 };
 
 int rc_parse_format(const char* format_str);
-int rc_format_value(char* buffer, int size, int32_t value, int format);
+int rc_format_value(char* buffer, int size, int value, int format);
 
 /*****************************************************************************\
 | Rich Presence                                                               |
@@ -369,8 +365,8 @@ int rc_format_value(char* buffer, int size, int32_t value, int format);
 typedef struct rc_richpresence_lookup_item_t rc_richpresence_lookup_item_t;
 
 struct rc_richpresence_lookup_item_t {
-  uint32_t first;
-  uint32_t last;
+  unsigned first;
+  unsigned last;
   rc_richpresence_lookup_item_t* left;
   rc_richpresence_lookup_item_t* right;
   const char* label;
@@ -383,7 +379,7 @@ struct rc_richpresence_lookup_t {
   rc_richpresence_lookup_t* next;
   const char* name;
   const char* default_label;
-  uint8_t format;
+  unsigned short format;
 };
 
 typedef struct rc_richpresence_display_part_t rc_richpresence_display_part_t;
@@ -393,7 +389,7 @@ struct rc_richpresence_display_part_t {
   const char* text;
   rc_richpresence_lookup_t* lookup;
   rc_memref_value_t *value;
-  uint8_t display_type;
+  unsigned short display_type;
 };
 
 typedef struct rc_richpresence_display_t rc_richpresence_display_t;
@@ -414,9 +410,9 @@ struct rc_richpresence_t {
 int rc_richpresence_size(const char* script);
 int rc_richpresence_size_lines(const char* script, int* lines_read);
 rc_richpresence_t* rc_parse_richpresence(void* buffer, const char* script, lua_State* L, int funcs_ndx);
-int rc_evaluate_richpresence(rc_richpresence_t* richpresence, char* buffer, size_t buffersize, rc_peek_t peek, void* peek_ud, lua_State* L);
+int rc_evaluate_richpresence(rc_richpresence_t* richpresence, char* buffer, unsigned buffersize, rc_peek_t peek, void* peek_ud, lua_State* L);
 void rc_update_richpresence(rc_richpresence_t* richpresence, rc_peek_t peek, void* peek_ud, lua_State* L);
-int rc_get_richpresence_display_string(rc_richpresence_t* richpresence, char* buffer, size_t buffersize, rc_peek_t peek, void* peek_ud, lua_State* L);
+int rc_get_richpresence_display_string(rc_richpresence_t* richpresence, char* buffer, unsigned buffersize, rc_peek_t peek, void* peek_ud, lua_State* L);
 void rc_reset_richpresence(rc_richpresence_t* self);
 
 #ifdef __cplusplus

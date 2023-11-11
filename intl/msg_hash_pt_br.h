@@ -1105,10 +1105,6 @@ MSG_HASH(
    "Áudio"
    )
 MSG_HASH(
-   MENU_ENUM_SUBLABEL_AUDIO_SETTINGS,
-   "Altera as configurações de entrada/saída de áudio."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_INPUT_SETTINGS,
    "Entrada"
    )
@@ -1193,20 +1189,12 @@ MSG_HASH(
    "Arquivo de trapaça."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_HELP_FILE_BROWSER_OVERLAY,
-   "Arquivo de sobreposição."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_HELP_FILE_BROWSER_RDB,
    "Arquivo de banco de dados."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_HELP_FILE_BROWSER_FONT,
    "Arquivo de fonte TrueType."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_HELP_FILE_BROWSER_PLAIN_FILE,
-   "Arquivo simples."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_HELP_FILE_BROWSER_MOVIE_OPEN,
@@ -2268,10 +2256,6 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MICROPHONE_SETTINGS,
    "Microfone"
    )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_MICROPHONE_SETTINGS,
-   "Altera as configurações de entrada de áudio."
-   )
 #endif
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AUDIO_RESAMPLER_SETTINGS,
@@ -2753,10 +2737,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_SUBLABEL_INPUT_BIND_HOLD,
    "Quantidade de segundos para manter uma entrada para vinculá-la."
-   )
-MSG_HASH(
-   MSG_INPUT_BIND_PRESS,
-   "Pressione uma tecla do teclado, mouse ou controle"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_INPUT_TURBO_PERIOD,
@@ -4208,12 +4188,8 @@ MSG_HASH(
    "Oculta a sobreposição enquanto estiver dentro do menu e exibe novamente ao sair."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_INPUT_OVERLAY_HIDE_WHEN_GAMEPAD_CONNECTED,
-   "Ocultar sobreposição quando controle está conectado"
-   )
-MSG_HASH(
    MENU_ENUM_SUBLABEL_INPUT_OVERLAY_HIDE_WHEN_GAMEPAD_CONNECTED,
-   "Oculta a sobreposição quando um controle físico está conectado na porta 1, e volta a exibir a sobreposição ao desconectar o controle."
+   "Oculta a sobreposição quando um controle estiver conectado na porta 1 e mostra-a novamente quando o controle for desconectado."
    )
 #if defined(ANDROID)
 MSG_HASH(
@@ -5619,6 +5595,10 @@ MSG_HASH(
    "Imagem de fundo"
    )
 MSG_HASH(
+   MENU_ENUM_SUBLABEL_MENU_WALLPAPER,
+   "Seleciona uma imagem para definir como plano de fundo do menu."
+   )
+MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MENU_WALLPAPER_OPACITY,
    "Opacidade do plano de fundo"
    )
@@ -5679,14 +5659,6 @@ MSG_HASH(
    "Use animação de rolagem suave ao exibir longos textos de menu. Tem um pequeno impacto no desempenho."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_MENU_REMEMBER_SELECTION,
-   "Lembrar seleção ao alterar abas"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_MENU_REMEMBER_SELECTION,
-   "Lembra a posição anterior do cursor ao mudar de aba. RGUI não tem abas, mas as listas de reproduções e configurações se comportam como abas."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MENU_REMEMBER_SELECTION_ALWAYS,
    "Sempre"
    )
@@ -5704,6 +5676,10 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_MODE,
    "Formato de saída do serviço de IA"
+   )
+MSG_HASH( /* FIXME What does the Narrator mode do? */
+   MENU_ENUM_SUBLABEL_AI_SERVICE_MODE,
+   "Mostre a tradução como uma sobreposição de texto (modo imagem) ou reproduzir como conversão de texto em fala (modo de fala)."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_URL,
@@ -7102,7 +7078,7 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_EXPLORE_SHOW_ALL,
-   "Mostrar tudo"
+   "Mostrar todos"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_EXPLORE_ADDITIONAL_FILTER,
@@ -8487,14 +8463,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_NARRATOR_MODE,
    "Modo narrador"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_BOTTOM,
-   "Embaixo"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_TOP,
-   "Topo"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_ENTRY_REMOVE_ENABLE_HIST_FAV,
@@ -10552,6 +10520,10 @@ MSG_HASH(
    "Iniciar ou continuar a pesquisa de trapaça"
    )
 MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_RUN_MUSIC,
+   "Executar"
+   )
+MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SECONDS,
    "segundos"
    )
@@ -11058,18 +11030,6 @@ MSG_HASH( /* FIXME Should be MSG_ */
 MSG_HASH( /* FIXME Should be MSG_ */
    MENU_ENUM_LABEL_VALUE_SIDELOAD_CORE_ERROR,
    "Falha na instalação do núcleo"
-   )
-MSG_HASH(
-   MSG_AI_AUTO_MODE_ENABLED,
-   "Tradução automática ativada."
-   )
-MSG_HASH(
-   MSG_AI_AUTO_MODE_DISABLED,
-   "Tradução automática desativada."
-   )
-MSG_HASH(
-   MSG_AI_NOTHING_TO_TRANSLATE,
-   "Nada para traduzir."
    )
 MSG_HASH(
    MSG_CHEAT_DELETE_ALL_INSTRUCTIONS,
@@ -13106,7 +13066,18 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_BRIGHTNESS_CONTROL,
    "Aumenta ou diminui o brilho da tela."
    )
-#ifdef HAVE_LIBNX
+
+#ifdef HAVE_LAKKA_SWITCH
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_SWITCH_GPU_PROFILE,
+   "Overclock da GPU"
+   )
+MSG_HASH(
+   MENU_ENUM_SUBLABEL_SWITCH_GPU_PROFILE,
+   "Faz um overclock ou underclock na CPU do Switch."
+   )
+#endif
+#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SWITCH_CPU_PROFILE,
    "Overclock da CPU"
@@ -13165,12 +13136,6 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_TIMEZONE,
    "Selecione seu fuso horário para ajustar a data e a hora à sua localização."
    )
-#ifdef HAVE_LAKKA_SWITCH
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_OC_ENABLE,
-   "Overclock da CPU"
-   )
-#endif
 MSG_HASH(
    MSG_LOCALAP_SWITCHING_OFF,
    "Desconectando do ponto de acesso Wi-Fi."
@@ -13207,8 +13172,6 @@ MSG_HASH(
    MSG_LOCALAP_ERROR_CONFIG_PARSE,
    "Arquivo de configuração incorreto: valores APNAME ou PASSWORD não puderam ser encontrados em %s"
    )
-#endif
-#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 MSG_HASH(

@@ -4476,6 +4476,10 @@ MSG_HASH(
    "快速转发帧数"
    )
 MSG_HASH(
+   MENU_ENUM_SUBLABEL_FASTFORWARD_FRAMESKIP,
+   "根据快速前进速率跳过帧。这将节省电力，并允许使用第三方帧限制。"
+   )
+MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SLOWMOTION_RATIO,
    "慢放倍率"
    )
@@ -6219,6 +6223,10 @@ MSG_HASH(
    "背景图像"
    )
 MSG_HASH(
+   MENU_ENUM_SUBLABEL_MENU_WALLPAPER,
+   "选择图像作为菜单背景。"
+   )
+MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MENU_WALLPAPER_OPACITY,
    "背景不透明度"
    )
@@ -6304,6 +6312,10 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_MODE,
    "AI 服务输出"
+   )
+MSG_HASH( /* FIXME What does the Narrator mode do? */
+   MENU_ENUM_SUBLABEL_AI_SERVICE_MODE,
+   "将翻译显示为文本叠加图层(图像模式)，或作为文本到语音播放 (语音模式)。"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_URL,
@@ -9457,10 +9469,6 @@ MSG_HASH(
    "讲述人模式"
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_TOP,
-   "顶部"
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_ENTRY_REMOVE_ENABLE_HIST_FAV,
    "历史和收藏"
    )
@@ -11574,6 +11582,10 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_CHEAT_SEARCH_SETTINGS,
    "开始或继续金手指搜索"
+   )
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_RUN_MUSIC,
+   "运行"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SECONDS,
@@ -14318,7 +14330,18 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_BRIGHTNESS_CONTROL,
    "提高或降低屏幕亮度。"
    )
-#ifdef HAVE_LIBNX
+
+#ifdef HAVE_LAKKA_SWITCH
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_SWITCH_GPU_PROFILE,
+   "GPU 超频"
+   )
+MSG_HASH(
+   MENU_ENUM_SUBLABEL_SWITCH_GPU_PROFILE,
+   "超频或降频 Switch 的 GPU。"
+   )
+#endif
+#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SWITCH_CPU_PROFILE,
    "CPU 超频"
@@ -14373,12 +14396,6 @@ MSG_HASH(
    MENU_ENUM_LABEL_HELP_TIMEZONE,
    "显示可用时区列表。选择时区后，时间和日期将调整到选定时区。 它假定系统/硬件时钟已设置为 UTC。"
    )
-#ifdef HAVE_LAKKA_SWITCH
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_OC_ENABLE,
-   "CPU 超频"
-   )
-#endif
 MSG_HASH(
    MSG_LOCALAP_SWITCHING_OFF,
    "正在关闭 Wi-Fi 接入点。"
@@ -14415,8 +14432,6 @@ MSG_HASH(
    MSG_LOCALAP_ERROR_CONFIG_PARSE,
    "错误配置文件——在 %s 中找不到 APNAME 或 PASSWORD"
    )
-#endif
-#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 MSG_HASH(

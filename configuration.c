@@ -61,11 +61,7 @@
 
 #include "lakka.h"
 
-#ifdef HAVE_LAKKA_SWITCH
-#include "lakka-switch.h"
-#endif
-
-#if defined(HAVE_LIBNX)
+#if defined(HAVE_LAKKA) || defined(HAVE_LIBNX)
 #include "switch_performance_profiles.h"
 #endif
 
@@ -1619,10 +1615,9 @@ static struct config_path_setting *populate_settings_path(
    SETTING_PATH("menu_wallpaper",                settings->paths.path_menu_wallpaper, false, NULL, true);
 #ifdef HAVE_RGUI
    SETTING_PATH("rgui_menu_theme_preset",        settings->paths.path_rgui_theme_preset, false, NULL, true);
-#endif
-   /* Browser and config directories are not RGUI dependent, but name is kept to avoid config file change */
    SETTING_PATH("rgui_browser_directory",        settings->paths.directory_menu_content, true, NULL, true);
    SETTING_PATH("rgui_config_directory",         settings->paths.directory_menu_config, true, NULL, true);
+#endif
 #ifdef HAVE_XMB
    SETTING_PATH("xmb_font",                      settings->paths.path_menu_xmb_font, false, NULL, true);
 #endif
@@ -1753,14 +1748,8 @@ static struct config_bool_setting *populate_settings_bool(
    SETTING_BOOL("ai_service_enable",             &settings->bools.ai_service_enable, true, DEFAULT_AI_SERVICE_ENABLE, false);
    SETTING_BOOL("ai_service_pause",              &settings->bools.ai_service_pause, true, DEFAULT_AI_SERVICE_PAUSE, false);
    SETTING_BOOL("wifi_enabled",                  &settings->bools.wifi_enabled, true, DEFAULT_WIFI_ENABLE, false);
-#ifndef HAVE_LAKKA
    SETTING_BOOL("gamemode_enable",               &settings->bools.gamemode_enable, true, DEFAULT_GAMEMODE_ENABLE, false);
-#endif
-#ifdef HAVE_LAKKA_SWITCH
-   SETTING_BOOL("switch_oc",                     &settings->bools.switch_oc, true, DEFAULT_SWITCH_OC, false);
-   SETTING_BOOL("switch_cec",                    &settings->bools.switch_cec, true, DEFAULT_SWITCH_CEC, false);
-   SETTING_BOOL("bluetooth_ertm_disable",        &settings->bools.bluetooth_ertm_disable, true, DEFAULT_BLUETOOTH_ERTM, false);
-#endif
+
    SETTING_BOOL("audio_enable",                  &settings->bools.audio_enable, true, DEFAULT_AUDIO_ENABLE, false);
    SETTING_BOOL("audio_sync",                    &settings->bools.audio_sync, true, DEFAULT_AUDIO_SYNC, false);
    SETTING_BOOL("audio_rate_control",            &settings->bools.audio_rate_control, true, DEFAULT_RATE_CONTROL, false);
@@ -1810,7 +1799,6 @@ static struct config_bool_setting *populate_settings_bool(
    SETTING_BOOL("video_ctx_scaling",             &settings->bools.video_ctx_scaling, true, DEFAULT_VIDEO_CTX_SCALING, false);
    SETTING_BOOL("video_force_aspect",            &settings->bools.video_force_aspect, true, DEFAULT_FORCE_ASPECT, false);
    SETTING_BOOL("video_frame_delay_auto",        &settings->bools.video_frame_delay_auto, true, DEFAULT_FRAME_DELAY_AUTO, false);
-   SETTING_BOOL("video_frame_rest",              &settings->bools.video_frame_rest, true, DEFAULT_FRAME_REST, false);
 #if defined(DINGUX)
    SETTING_BOOL("video_dingux_ipu_keep_aspect",  &settings->bools.video_dingux_ipu_keep_aspect, true, DEFAULT_DINGUX_IPU_KEEP_ASPECT, false);
 #endif
@@ -1863,6 +1851,7 @@ static struct config_bool_setting *populate_settings_bool(
    SETTING_BOOL("menu_unified_controls",         &settings->bools.menu_unified_controls, true, false, false);
    SETTING_BOOL("menu_disable_info_button",      &settings->bools.menu_disable_info_button, true, false, false);
    SETTING_BOOL("menu_disable_search_button",    &settings->bools.menu_disable_search_button, true, false, false);
+   SETTING_BOOL("menu_throttle_framerate",       &settings->bools.menu_throttle_framerate, true, true, false);
    SETTING_BOOL("menu_linear_filter",            &settings->bools.menu_linear_filter, true, DEFAULT_VIDEO_SMOOTH, false);
    SETTING_BOOL("menu_horizontal_animation",     &settings->bools.menu_horizontal_animation, true, DEFAULT_MENU_HORIZONTAL_ANIMATION, false);
    SETTING_BOOL("menu_pause_libretro",           &settings->bools.menu_pause_libretro, true, true, false);
@@ -2477,13 +2466,11 @@ static struct config_uint_setting *populate_settings_uint(
    SETTING_UINT("cheevos_appearance_anchor",     &settings->uints.cheevos_appearance_anchor, true, DEFAULT_CHEEVOS_APPEARANCE_ANCHOR, false);
    SETTING_UINT("cheevos_visibility_summary",    &settings->uints.cheevos_visibility_summary, true, DEFAULT_CHEEVOS_VISIBILITY_SUMMARY, false);
 #endif
+
    SETTING_UINT("accessibility_narrator_speech_speed", &settings->uints.accessibility_narrator_speech_speed, true, DEFAULT_ACCESSIBILITY_NARRATOR_SPEECH_SPEED, false);
-   SETTING_UINT("ai_service_mode",              &settings->uints.ai_service_mode,            true, DEFAULT_AI_SERVICE_MODE, false);
-   SETTING_UINT("ai_service_target_lang",       &settings->uints.ai_service_target_lang,     true, 0, false);
-   SETTING_UINT("ai_service_source_lang",       &settings->uints.ai_service_source_lang,     true, 0, false);
-   SETTING_UINT("ai_service_poll_delay",        &settings->uints.ai_service_poll_delay,      true, DEFAULT_AI_SERVICE_POLL_DELAY, false);
-   SETTING_UINT("ai_service_text_position",     &settings->uints.ai_service_text_position,   true, DEFAULT_AI_SERVICE_TEXT_POSITION, false);
-   SETTING_UINT("ai_service_text_padding",      &settings->uints.ai_service_text_padding,    true, DEFAULT_AI_SERVICE_TEXT_PADDING, false);
+   SETTING_UINT("ai_service_mode",               &settings->uints.ai_service_mode,        true, DEFAULT_AI_SERVICE_MODE, false);
+   SETTING_UINT("ai_service_target_lang",        &settings->uints.ai_service_target_lang, true, 0, false);
+   SETTING_UINT("ai_service_source_lang",        &settings->uints.ai_service_source_lang, true, 0, false);
 
 #ifdef HAVE_LIBNX
    SETTING_UINT("libnx_overclock",               &settings->uints.libnx_overclock, true, SWITCH_DEFAULT_CPU_PROFILE, false);
@@ -4081,32 +4068,6 @@ static bool config_load_file(global_t *global,
    libnx_apply_overclock();
 #endif
 
-#ifdef HAVE_LAKKA_SWITCH
-    FILE* f = fopen(SWITCH_OC_TOGGLE_PATH, "w");
-    if (settings->bools.switch_oc == true) {
-	  fprintf(f, "1\n");
-	} else {
-	  fprintf(f, "0\n");	
-    }
-    fclose(f);
-    if (settings->bools.switch_cec == true) {
-      FILE* f = fopen(SWITCH_CEC_TOGGLE_PATH, "w");
-	  fprintf(f, "\n");
-      fclose(f);
-	} else {
-	  filestream_delete(SWITCH_CEC_TOGGLE_PATH);	
-    }
-   if (settings->bools.bluetooth_ertm_disable == true) {
-      FILE* f = fopen(BLUETOOTH_ERTM_TOGGLE_PATH, "w");
-	  fprintf(f, "1\n");
-      fclose(f);
-	} else {
-      FILE* f = fopen(BLUETOOTH_ERTM_TOGGLE_PATH, "w");
-	  fprintf(f, "0\n");
-      fclose(f);
-    }
-#endif   
- 
    frontend_driver_set_sustained_performance_mode(settings->bools.sustained_performance_mode);
    recording_driver_update_streaming_url();
 

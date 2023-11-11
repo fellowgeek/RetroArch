@@ -1189,48 +1189,16 @@ MSG_HASH(
    "Ota pilvisynkronointi käyttöön"
    )
 MSG_HASH(
-   MENU_ENUM_SUBLABEL_CLOUD_SYNC_ENABLE,
-   "Yritä synkronoida asetukset, SRAM-tiedostot ja tilatallennukset pilvitallennuspalveluun."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_CLOUD_SYNC_DESTRUCTIVE,
-   "Tuhoava pilvisynkronointi"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_CLOUD_SYNC_DESTRUCTIVE,
-   "Kun pois käytöstä, tiedostot siirretään varmuuskopio-kansioon, ennen kuin niitä korvataan tai poistetaan."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_CLOUD_SYNC_DRIVER,
    "Pilvisynkronoinnin taustaosa"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_CLOUD_SYNC_DRIVER,
-   "Mitä pilvitallennusverkon protokollaa käytetään."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_CLOUD_SYNC_URL,
-   "Pilvitallennustilan URL"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_CLOUD_SYNC_URL,
-   "API:n aloituspisteen URL pilvitallennuspalvelussa."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_CLOUD_SYNC_USERNAME,
    "Käyttäjänimi"
    )
 MSG_HASH(
-   MENU_ENUM_SUBLABEL_CLOUD_SYNC_USERNAME,
-   "Käyttäjänimesi pilvitallennustililläsi."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_CLOUD_SYNC_PASSWORD,
    "Salasana"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_CLOUD_SYNC_PASSWORD,
-   "Salasanasi pilvitallennustililläsi."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_LOGGING_SETTINGS,
@@ -1553,26 +1521,6 @@ MSG_HASH(
    "Direct3D 12 -ajuri, joka tukee Slang ja HDR-varjostimien formaattia."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_HELP_VIDEO_DRIVER_DISPMANX,
-   "DispmanX-ajuri. Käyttää Videocore IV GPU:n DispmanX API:ta Raspberry Pi 0..3 -laitteissa. Ei päällyste- tai varjostintukea."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_HELP_VIDEO_DRIVER_CACA,
-   "LibCACA-ajuri. Tuottaa merkkiulostuloa grafiikan sijasta. Ei suositella käytettäväksi käytännön tarkoituksiin."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_HELP_VIDEO_DRIVER_EXYNOS,
-   "Alhaisen tason Exynos-videoajuri, joka käyttää Samsung Exynos SoC:ssa olevaa G2D-lohkoa blit-operaatioihin. Ohjelmistopohjaisten ydinten suorituskyky pitäisi olla optimaalinen."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_HELP_VIDEO_DRIVER_DRM,
-   "Tavallinen DRM-videon ajuri. Tämä on alhaisen tason videon ajuri, joka käyttää libdrm:ää laitteiston skaalaukseen käyttäen GPU-päällysteitä."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_HELP_VIDEO_DRIVER_SUNXI,
-   "Alhaisen tason Sunxi-videon ajuri, joka käyttää Allwinner SoC-laitteissa olevaa G2D-lohkoa."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_HELP_VIDEO_DRIVER_WIIU,
    "Wii U -ajuri. Tukee Slang-varjostimia."
    )
@@ -1601,14 +1549,6 @@ MSG_HASH(
    "Käytettävä ääniajuri."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_HELP_AUDIO_DRIVER_RSOUND,
-   "RSound-ajuri verkkoon perustuville äänijärjestelmille."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_HELP_AUDIO_DRIVER_OSS,
-   "Perinteinen Open Sound System -ajuri."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_HELP_AUDIO_DRIVER_ALSA,
    "Oletusarvoinen ALSA-ajuri."
    )
@@ -1621,32 +1561,12 @@ MSG_HASH(
    "ALSA-ajuri toteutettuna ilman riippuvuuksia."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_HELP_AUDIO_DRIVER_ROAR,
-   "RoarAudio-äänijärjestelmäajuri."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_HELP_AUDIO_DRIVER_AL,
    "OpenAL-ajuri."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_HELP_AUDIO_DRIVER_SL,
    "OpenSL-ajuri."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_HELP_AUDIO_DRIVER_DSOUND,
-   "DirectSound-ajuri. DirectSoundia käytettiin pääasiassa Windows 95:stä Windows XP:hen."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_HELP_AUDIO_DRIVER_WASAPI,
-   "Windows Audio Session API -ajuri. WASAPIa käytetään pääasiassa Windows 7:ssä ja sitä uudemmissa Windows versioissa."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_HELP_AUDIO_DRIVER_PULSE,
-   "PulseAudio-ajuri. Jos järjestelmä käyttää PulseAudio-äänijärjestelmää, varmista, että käytät tätä ajuria, esimerkiksi ALSA:n sijaan."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_HELP_AUDIO_DRIVER_JACK,
-   "Jack Audio Connection Kit -ajuri."
    )
 #ifdef HAVE_MICROPHONE
 MSG_HASH(
@@ -1656,18 +1576,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_SUBLABEL_MICROPHONE_DRIVER,
    "Mikrofonin ajuri."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_MICROPHONE_RESAMPLER_DRIVER,
-   "Mikrofonin näytteenottaja"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_MICROPHONE_RESAMPLER_DRIVER,
-   "Mikrofonin näytteenottajan ajuri."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_MICROPHONE_BLOCK_FRAMES,
-   "Mikrofonin estokuvat"
    )
 #endif
 MSG_HASH(
@@ -2018,10 +1926,6 @@ MSG_HASH(
    "Automaattinen virkistystaajuuden vaihto"
    )
 MSG_HASH(
-   MENU_ENUM_SUBLABEL_VIDEO_AUTOSWITCH_REFRESH_RATE,
-   "Vaihda näytön virkistystaajuutta automaattisesti nykyisen sisällön perusteella."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_AUTOSWITCH_REFRESH_RATE_EXCLUSIVE_FULLSCREEN,
    "Vain yksinomaisessa koko näytön tilassa"
    )
@@ -2032,14 +1936,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_AUTOSWITCH_REFRESH_RATE_ALL_FULLSCREEN,
    "Kaikissa koko näytön tiloissa"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_AUTOSWITCH_PAL_THRESHOLD,
-   "Automaattisen virkistystaajuuden PAL-kynnysarvo"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_VIDEO_AUTOSWITCH_PAL_THRESHOLD,
-   "Maksimivirkistystaajuus, joka katsotaan PAL-standardin mukaiseksi."
    )
 #if defined(DINGUX) && defined(DINGUX_BETA)
 MSG_HASH(
@@ -2553,10 +2449,6 @@ MSG_HASH(
    "Ohita ääniajurin käyttämä oletusäänilaite. Tämä asetus riippuu ajurista."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_HELP_AUDIO_DEVICE_RSOUND,
-   "RSound-ajurille mukautettu RSound-palvelimen IP-osoite."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AUDIO_LATENCY,
    "Äänen viive (ms)"
    )
@@ -2684,10 +2576,6 @@ MSG_HASH(
 
 /* Settings > Audio > Mixer Settings > Mixer Stream */
 
-MSG_HASH(
-   MENU_ENUM_LABEL_MIXER_STREAM,
-   "Mikserivirta #%d: %s"
-   )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MIXER_ACTION_PLAY,
    "Toista"
@@ -3408,10 +3296,6 @@ MSG_HASH(
    "Vaihtaa teknisen tilaston näytöllä päälle/pois."
    )
 MSG_HASH(
-   MENU_ENUM_SUBLABEL_INPUT_META_OSK,
-   "Vaihtaa näppäimistöpäällyksen päälle/pois."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_INPUT_META_OVERLAY_NEXT,
    "Seuraava päällys"
    )
@@ -3820,10 +3704,6 @@ MSG_HASH(
    "Tallenna muutokset asetustiedostoon suljettaessa."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_REMAP_SAVE_ON_EXIT,
-   "Tallenna uudelleenmääritystiedostot lopettaessa"
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_GAME_SPECIFIC_OPTIONS,
    "Lataa sisältökohtaiset ydinasetukset automaattisesti"
    )
@@ -3945,10 +3825,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_SUBLABEL_SAVESTATE_AUTO_SAVE,
    "Luo tilatallennus automaattisesti kun suljet sisällön. RetroArch lataa automaattisesti tämän tilatallennuksen, jos \"Lataa tilatallennus automaattisesti\" on käytössä."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SAVESTATE_AUTO_LOAD,
-   "Tilan automaattinen lataaminen"
    )
 MSG_HASH(
    MENU_ENUM_SUBLABEL_SAVESTATE_AUTO_LOAD,
@@ -4565,33 +4441,9 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_OVERLAY_Y_OFFSET_PORTRAIT,
    "Päällyksen pystysuuntainen siirtymä, kun käytetään pystysuuntaista näytön suuntausta. Positiiviset arvot siirtävät päällystä ylöspäin, negatiiviset arvot alaspäin."
    )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_OSK_OVERLAY_SETTINGS,
-   "Näppäimistöpäällys"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_OSK_OVERLAY_SETTINGS,
-   "Valitse ja säädä näppäimistöpäällystä."
-   )
 
 /* Settings > On-Screen Display > On-Screen Overlay > Keyboard Overlay */
 
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_OSK_OVERLAY_PRESET,
-   "Näppäimistöpäällyksen esiasetus"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_OSK_OVERLAY_PRESET,
-   "Valitse näppäimistöpäällys tiedostoselaimesta."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_INPUT_OSK_OVERLAY_AUTO_SCALE,
-   "Automaattinen näppäimistöpäällyksen skaalaus"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_OSK_OVERLAY_OPACITY,
-   "Näppäimistöpäällyksen peittävyys"
-   )
 
 /* Settings > On-Screen Display > Video Layout */
 
@@ -5807,16 +5659,16 @@ MSG_HASH(
    "Taustakuva"
    )
 MSG_HASH(
+   MENU_ENUM_SUBLABEL_MENU_WALLPAPER,
+   "Valitse kuva, joka asetetaan valikon taustaksi."
+   )
+MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MENU_WALLPAPER_OPACITY,
    "Taustan läpinäkyvyys"
    )
 MSG_HASH(
    MENU_ENUM_SUBLABEL_MENU_WALLPAPER_OPACITY,
    "Muokkaa taustakuvan läpinäkyvyyttä."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_MENU_FRAMEBUFFER_OPACITY,
-   "Peittävyys"
    )
 MSG_HASH(
    MENU_ENUM_SUBLABEL_MENU_FRAMEBUFFER_OPACITY,
@@ -5893,9 +5745,9 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_MODE,
    "Tekoälypalvelun tuloste"
    )
-MSG_HASH(
+MSG_HASH( /* FIXME What does the Narrator mode do? */
    MENU_ENUM_SUBLABEL_AI_SERVICE_MODE,
-   "Näytä käännös kuvapäällyksenä (Kuva-tila), suorana äänenä (Puhe), tekstistä puheeksi (Lukija) tai tekstipäällyksenä (Teksti)."
+   "Näytä käännös tekstipäällyksenä (kuvatila), tai toista puhesyntetisaattorilla (puhetila)."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_URL,
@@ -5936,30 +5788,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_SUBLABEL_AI_SERVICE_TARGET_LANG,
    "Kieli johon palvelu kääntää. 'Oletus' on englanti."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_POLL_DELAY,
-   "Tekoälypalvelun automaattinen kyselyviive"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_POLL_DELAY,
-   "Vähimmäisviive millisekunteina automaattisten kutsujen välillä. Laskee viivettä, mutta lisää prosessorin käyttöä."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION,
-   "Tekoälypalvelun tekstin sijainnin muutos"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_TEXT_POSITION,
-   "Sijainnin muutos, kun palvelu on tekstitilassa."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_PADDING,
-   "Tekoälypalvelun tekstin marginaali (%)"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_TEXT_PADDING,
-   "Pystysuuntainen lisämarginaali, joka lisätään tekstipäällykseen tekstitilassa. Enemmän marginaalia työntää tekstin lähemmäksi näytön keskiosaa."
    )
 
 /* Settings > Accessibility */
@@ -6970,14 +6798,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_SUBLABEL_OVERLAY_DIRECTORY,
    "Päällykset on tallennettu tähän kansioon."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_OSK_OVERLAY_DIRECTORY,
-   "Näppäimistöpäällykset"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_OSK_OVERLAY_DIRECTORY,
-   "Näppäimistöpäällykset on tallennettu tähän kansioon."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_LAYOUT_DIRECTORY,
@@ -8835,26 +8655,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_NARRATOR_MODE,
    "Kertojatila"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_MODE,
-   "Tekstitila"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_NARRATOR_MODE,
-   "Teksti + lukija"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_IMAGE_NARRATOR_MODE,
-   "Kuva + lukija"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_BOTTOM,
-   "Alhaalla"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_TOP,
-   "Yläreuna"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_ENTRY_REMOVE_ENABLE_HIST_FAV,
@@ -11085,7 +10885,7 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_RUN_MUSIC,
-   "Toista mediasoittimessa"
+   "Käynnistä"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SECONDS,
@@ -11602,22 +11402,6 @@ MSG_HASH( /* FIXME Should be MSG_ */
 MSG_HASH( /* FIXME Should be MSG_ */
    MENU_ENUM_LABEL_VALUE_SIDELOAD_CORE_ERROR,
    "Ytimen asennus epäonnistui"
-   )
-MSG_HASH(
-   MSG_AI_VIDEO_DRIVER_NOT_SUPPORTED,
-   "Videoajuri ei tue tekoälyaplvelua."
-   )
-MSG_HASH(
-   MSG_AI_AUTO_MODE_ENABLED,
-   "Automaattinen käännös käytössä."
-   )
-MSG_HASH(
-   MSG_AI_AUTO_MODE_DISABLED,
-   "Automaattinen käännös pois käytöstä."
-   )
-MSG_HASH(
-   MSG_AI_NOTHING_TO_TRANSLATE,
-   "Ei mitään käännettävää."
    )
 MSG_HASH(
    MSG_CHEAT_DELETE_ALL_INSTRUCTIONS,
@@ -12279,10 +12063,6 @@ MSG_HASH(
 MSG_HASH(
    MSG_FAILED_TO_LOAD_OVERLAY,
    "Päällyksen lataaminen epäonnistui."
-   )
-MSG_HASH(
-   MSG_OSK_OVERLAY_NOT_SET,
-   "Näppäimistöpäällystä ei ole asetettu."
    )
 MSG_HASH(
    MSG_FAILED_TO_LOAD_STATE,
@@ -13690,7 +13470,18 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_BRIGHTNESS_CONTROL,
    "Lisää tai vähennä näytön kirkkautta."
    )
-#ifdef HAVE_LIBNX
+
+#ifdef HAVE_LAKKA_SWITCH
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_SWITCH_GPU_PROFILE,
+   "Näytönohjaimen ylikellotus"
+   )
+MSG_HASH(
+   MENU_ENUM_SUBLABEL_SWITCH_GPU_PROFILE,
+   "Ylikellota tai alikellota Switchin näytönohjain."
+   )
+#endif
+#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SWITCH_CPU_PROFILE,
    "Suorittimen ylikellotus"
@@ -13737,24 +13528,6 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_TIMEZONE,
    "Valitse aikavyöhyke, jotta voit määrittää sijaintisi päivämäärän ja ajan."
    )
-#ifdef HAVE_LAKKA_SWITCH
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_LAKKA_SWITCH_OPTIONS,
-   "Nintendo Switch -asetukset"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_LAKKA_SWITCH_OPTIONS,
-   "Hallitse Nintendo Switch -asetuksia."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_OC_ENABLE,
-   "Suorittimen ylikellotus"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_CEC_ENABLE,
-   "CEC-tuki"
-   )
-#endif
 MSG_HASH(
    MSG_LOCALAP_SWITCHING_OFF,
    "Kytketään Wi-Fi yhteyspiste pois päältä."
@@ -13791,8 +13564,6 @@ MSG_HASH(
    MSG_LOCALAP_ERROR_CONFIG_PARSE,
    "Väärä kokoonpanotiedosto- APNAME tai PASSWORD ei löydy kohteesta %s"
    )
-#endif
-#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 MSG_HASH(

@@ -5752,7 +5752,7 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_SUBLABEL_MENU_WALLPAPER,
-   "Wybierz obraz, aby ustawić jako tło menu. Ręczne i dynamiczne obrazy zastąpią 'Temat koloru'."
+   "Wybierz obraz, aby ustawić jako tło menu."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MENU_WALLPAPER_OPACITY,
@@ -5841,9 +5841,9 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_MODE,
    "Wyjście usługi AI"
    )
-MSG_HASH(
+MSG_HASH( /* FIXME What does the Narrator mode do? */
    MENU_ENUM_SUBLABEL_AI_SERVICE_MODE,
-   "Pokaż tłumaczenie jako nakładkę obrazu (tryb obrazu), jako bezpośredni dźwięk (Speech), tekst na mowę (Narrator) lub nakładkę tekstu (Text)."
+   "Pokaż tłumaczenie jako nakładkę tekstową (tryb obrazu) lub odtwarzaj jako tekst - To-Speech (tryb Speech)."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_URL,
@@ -5884,22 +5884,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_SUBLABEL_AI_SERVICE_TARGET_LANG,
    "Język, który serwis przetłumaczy. \"Domyślnie\" to język angielski."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_POLL_DELAY,
-   "Opóźnienie automatycznego sprawdzania usług AI"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_POLL_DELAY,
-   "Minimalne opóźnienie w ms między połączeniami automatycznymi. Obniża reaktywność, ale zwiększa wydajność procesora."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION,
-   "Zastępowanie pozycji tekstowej usługi AI"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_TEXT_POSITION,
-   "Zastąp pozycję nakładki, gdy usługa jest w trybie tekstowym."
    )
 
 /* Settings > Accessibility */
@@ -8697,10 +8681,6 @@ MSG_HASH(
    "Tryb Narratora"
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_BOTTOM,
-   "Dolny"
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_ENTRY_REMOVE_ENABLE_HIST_FAV,
    "Historia i Ulubione"
    )
@@ -10825,7 +10805,7 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_RUN_MUSIC,
-   "Odtwarzaj w odtwarzaczu multimediów"
+   "Uruchom muzykę"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SECONDS,
@@ -13322,7 +13302,18 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_BRIGHTNESS_CONTROL,
    "Zwiększ lub zmniejsz jasność ekranu."
    )
-#ifdef HAVE_LIBNX
+
+#ifdef HAVE_LAKKA_SWITCH
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_SWITCH_GPU_PROFILE,
+   "Podkręcanie GPU"
+   )
+MSG_HASH(
+   MENU_ENUM_SUBLABEL_SWITCH_GPU_PROFILE,
+   "Podkręcanie lub obniżanie GPU."
+   )
+#endif
+#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SWITCH_CPU_PROFILE,
    "Podkręcanie CPU"
@@ -13381,12 +13372,6 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_TIMEZONE,
    "Wybierz strefę czasową, aby dostosować datę i czas do swojej lokalizacji."
    )
-#ifdef HAVE_LAKKA_SWITCH
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_OC_ENABLE,
-   "Podkręcanie CPU"
-   )
-#endif
 MSG_HASH(
    MSG_LOCALAP_SWITCHING_OFF,
    "Wyłączanie punktu dostępu Wi-Fi."
@@ -13423,8 +13408,6 @@ MSG_HASH(
    MSG_LOCALAP_ERROR_CONFIG_PARSE,
    "Niepoprawny plik konfiguracyjny - nie można znaleźć APNAME lub PASSWORD w %s"
    )
-#endif
-#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 MSG_HASH(

@@ -18,7 +18,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
-#include <locale.h>
 #ifdef HAVE_NETWORKING
 #include <net/net_compat.h>
 #include <net/net_socket.h>
@@ -738,8 +737,8 @@ bool command_play_replay_slot(command_t *cmd, const char *arg)
       {
          input_driver_state_t *input_st = input_state_get_ptr();
          task_queue_wait(NULL,NULL);
-         if(input_st->bsv_movie_state_next_handle)
-            snprintf(reply, sizeof(reply) - 1, "PLAY_REPLAY_SLOT %lld", (long long)(input_st->bsv_movie_state_next_handle->identifier));
+         if(input_st->bsv_movie_state_handle)
+            snprintf(reply, sizeof(reply) - 1, "PLAY_REPLAY_SLOT %lld", (long long)(input_st->bsv_movie_state_handle->identifier));
          else
             snprintf(reply, sizeof(reply) - 1, "PLAY_REPLAY_SLOT 0");
          command_post_state_loaded();
@@ -1167,10 +1166,6 @@ bool command_event_save_config(
    const char *str  = path_exists ? config_path :
       path_get(RARCH_PATH_CONFIG);
 
-   /* Workaround for libdecor 0.2.0 setting unwanted locale */
-#if defined(HAVE_WAYLAND) && defined(HAVE_DYNAMIC)
-   setlocale(LC_NUMERIC,"C");
-#endif
    if (path_exists && config_save_file(config_path))
    {
       snprintf(s, len, "%s \"%s\".",

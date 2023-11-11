@@ -6303,6 +6303,10 @@ MSG_HASH(
    "Obrázek na Pozadí"
    )
 MSG_HASH(
+   MENU_ENUM_SUBLABEL_MENU_WALLPAPER,
+   "Vyberte obrázek, který chcete nastavit jako pozadí nabídky."
+   )
+MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MENU_WALLPAPER_OPACITY,
    "Neprůhlednost Pozadí"
    )
@@ -6393,9 +6397,9 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_MODE,
    "AI Service Výstup"
    )
-MSG_HASH(
+MSG_HASH( /* FIXME What does the Narrator mode do? */
    MENU_ENUM_SUBLABEL_AI_SERVICE_MODE,
-   "Zobrazit překlad jako překrytí obrázku (Režim obrázku), jako přímý zvuk (Řeč), převod textu na řeč (Vypravěč) nebo jako překrytí textu (Text)."
+   "Zobrazte překlad jako překryvný text (režim obrazu) nebo jej přehrajte jako převod textu na řeč (režim řeči)."
    )
 MSG_HASH(
    MENU_ENUM_SUBLABEL_AI_SERVICE_URL,
@@ -6432,30 +6436,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_SUBLABEL_AI_SERVICE_TARGET_LANG,
    "Jazyk, do kterého bude služba překládána. Výchozí hodnota je angličtina."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_POLL_DELAY,
-   "Zpoždění automatického dotazování služby AI"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_POLL_DELAY,
-   "Minimální prodleva v ms mezi automatickými voláními. Snižuje reaktivitu, ale zvyšuje výkon procesoru."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION,
-   "Přepsání polohy textu služby AI"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_TEXT_POSITION,
-   "Přepsání pozice překryvu, když je služba v režimu Text."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_PADDING,
-   "Výplň textu služby AI (%)"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_TEXT_PADDING,
-   "Vertikální výplň, která se použije na překrytí textu, když je služba v režimu Text. Větší výplň posune text směrem ke středu obrazovky."
    )
 
 /* Settings > Accessibility */
@@ -7247,14 +7227,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_SUBLABEL_PLAYLIST_PORTABLE_PATHS,
    "Pokud je tato funkce povolena a je vybrán také adresář 'Prohlížeč souborů', uloží se aktuální hodnota parametru 'Prohlížeč souborů' do playlistu. Při načtení seznamu skladeb v jiném systému, kde je povolena stejná volba, se hodnota parametru 'File Browser' porovná s hodnotou playlistu; pokud se liší, cesty k položkám playlistu se automaticky opraví."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_PLAYLIST_USE_FILENAME,
-   "Použití názvů souborů pro porovnávání miniatur"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_PLAYLIST_USE_FILENAME,
-   "Je-li tato funkce povolena, vyhledá náhledy podle názvu souboru, nikoli podle jeho popisku."
    )
    MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MANAGE,
@@ -9629,26 +9601,6 @@ MSG_HASH(
    "Režim Vypravěč"
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_MODE,
-   "Textový režim"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_NARRATOR_MODE,
-   "Text + Vypravěč"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_IMAGE_NARRATOR_MODE,
-   "Obrázek + Vypravěč"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_BOTTOM,
-   "Spodní"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_TOP,
-   "Nahoře"
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_ENTRY_REMOVE_ENABLE_HIST_FAV,
    "Historie a Oblíbené Položky"
    )
@@ -11789,7 +11741,7 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_RUN_MUSIC,
-   "Přehrát v přehrávači médií"
+   "Spustit"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SECONDS,
@@ -12314,22 +12266,6 @@ MSG_HASH( /* FIXME Should be MSG_ */
 MSG_HASH( /* FIXME Should be MSG_ */
    MENU_ENUM_LABEL_VALUE_SIDELOAD_CORE_ERROR,
    "Instalace Jádra selhala"
-   )
-MSG_HASH(
-   MSG_AI_VIDEO_DRIVER_NOT_SUPPORTED,
-   "Ovladač videa není podporován pro službu AI."
-   )
-MSG_HASH(
-   MSG_AI_AUTO_MODE_ENABLED,
-   "Automatický překlad povolen."
-   )
-MSG_HASH(
-   MSG_AI_AUTO_MODE_DISABLED,
-   "Automatický překlad vypnut."
-   )
-MSG_HASH(
-   MSG_AI_NOTHING_TO_TRANSLATE,
-   "Není co překládat."
    )
 MSG_HASH(
    MSG_CHEAT_DELETE_ALL_INSTRUCTIONS,
@@ -14431,14 +14367,6 @@ MSG_HASH(
    "Zapnutím režimu Linux GameMode lze zlepšit latenci, odstranit problémy s praskáním zvuku a maximalizovat celkový výkon automatickou konfigurací CPU a GPU pro nejlepší výkon.\nPro fungování tohoto režimu je třeba nainstalovat software Herní mód. Informace o instalaci Herní mód naleznete na adrese https://github.com/FeralInteractive/gamemode."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_FRAME_REST,
-   "Snímkový odpočinek"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_VIDEO_FRAME_REST,
-   "Pokuste se snížit využití procesoru vsync tím, že po prezentaci snímku co nejvíce uspíte. Určeno především pro synchronizaci skenovací linie třetích stran."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PAL60_ENABLE,
    "Použít Režim PAL60"
    )
@@ -14530,7 +14458,18 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_BRIGHTNESS_CONTROL,
    "Zvýšení Nebo Snížení Jasu Obrazovky."
    )
-#ifdef HAVE_LIBNX
+
+#ifdef HAVE_LAKKA_SWITCH
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_SWITCH_GPU_PROFILE,
+   "Přetaktování GPU"
+   )
+MSG_HASH(
+   MENU_ENUM_SUBLABEL_SWITCH_GPU_PROFILE,
+   "Přetaktování nebo podtaktování přepínače grafického procesoru."
+   )
+#endif
+#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SWITCH_CPU_PROFILE,
    "Přetaktování CPU"
@@ -14581,40 +14520,6 @@ MSG_HASH(
    MENU_ENUM_LABEL_HELP_TIMEZONE,
    "Zobrazí seznam dostupných časových pásem. Po výběru časového pásma se čas a datum přizpůsobí vybranému časovému pásmu. Předpokládá, že systémové/hardwarové hodiny jsou nastaveny na UTC."
    )
-#ifdef HAVE_LAKKA_SWITCH
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_LAKKA_SWITCH_OPTIONS,
-   "Možnosti přepínače Nintendo Switch"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_LAKKA_SWITCH_OPTIONS,
-   "Správa specifických možností Nintendo Switch."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_OC_ENABLE,
-   "Přetaktování CPU"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_SWITCH_OC_ENABLE,
-   "Povolení frekvencí přetaktování procesoru"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_CEC_ENABLE,
-   "Podpora CEC"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_SWITCH_CEC_ENABLE,
-   "Povolení funkce CEC Handshaking s televizorem při dokování"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_BLUETOOTH_ERTM_DISABLE,
-   "Vypnutí funkce Bluetooth ERTM"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_BLUETOOTH_ERTM_DISABLE,
-   "Vypnutí funkce Bluetooth ERTM pro opravu párování některých zařízení"
-   )
-#endif
 MSG_HASH(
    MSG_LOCALAP_SWITCHING_OFF,
    "Vypnutí Přístupového Bodu Wi-Fi."
@@ -14651,8 +14556,6 @@ MSG_HASH(
    MSG_LOCALAP_ERROR_CONFIG_PARSE,
    "Chybný konfigurační soubor - nepodařilo se najít APNAME nebo HESLO v %s"
    )
-#endif
-#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 MSG_HASH(

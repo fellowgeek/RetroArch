@@ -615,10 +615,6 @@ MSG_HASH(
    "بنية وحدة المعالجة المركزية"
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_CPU_CORES,
-   "نَوَيات المُعالِجْ"
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SYSTEM_INFO_FRONTEND_IDENTIFIER,
    "واجهة Identifier"
    )
@@ -1157,14 +1153,6 @@ MSG_HASH(
    "ملف الإعدادات."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_HELP_FILE_BROWSER_SHADER_PRESET,
-   "مِلف الإعدادات المسبقة للمظلل."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_HELP_FILE_BROWSER_SHADER,
-   "مِلف المظلل."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_HELP_FILE_BROWSER_CHEAT,
    "ملف الغش."
    )
@@ -1572,11 +1560,11 @@ MSG_HASH(
 #if defined(DINGUX)
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_DINGUX_IPU_FILTER_TYPE,
-   "استيفاء الصورة"
+   "إستيفاء الصورة"
    )
 MSG_HASH(
    MENU_ENUM_SUBLABEL_VIDEO_DINGUX_IPU_FILTER_TYPE,
-   "تحديد طريقة استخراج الصور عند قياس المحتوى عن طريق IPU. \"ثنائي تكعيبي\" أو \"ثنائي خطي\" ينصح عند استخدام فلاتر الفيديو التي تعمل بالمعالج. هذا الخِيار ليس له تأثير على الأداء."
+   "تحديد طريقة استخراج الصور عند قياس المحتوى عن طريق ال IPU. \"ثنائي تكعيبي\" او \"ثنائي خطي\" ينصح عند استخدام فلاتر الفيديو التي تعمل بالمعالج. هذا الخيار ليس له تأثير على الأداء."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_DINGUX_IPU_FILTER_BICUBIC,
@@ -1593,11 +1581,7 @@ MSG_HASH(
 #if defined(RS90) || defined(MIYOO)
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_DINGUX_RS90_SOFTFILTER_TYPE,
-   "استيفاء الصورة"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_VIDEO_DINGUX_RS90_SOFTFILTER_TYPE,
-   "حدد طريقة استيفاء الصورة عندما يكونُ الخِيار 'تحجيم صحيح' معطل. أما 'أقرب جار' هو الأقل تأثيرًا على الأداء."
+   "إستيفاء الصورة"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_VIDEO_DINGUX_RS90_SOFTFILTER_POINT,
@@ -2539,14 +2523,6 @@ MSG_HASH(
    "القرص السابق"
    )
 
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_INPUT_META_SHADER_TOGGLE,
-   "المظلل (تبديل)"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_INPUT_META_SHADER_TOGGLE,
-   "تفعيل/تعطيل المظلل الحالي."
-   )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_INPUT_META_SHADER_NEXT,
    "المشهد التالي"
@@ -3763,14 +3739,6 @@ MSG_HASH( /* FIXME Not RGUI specific */
 
 /* Settings > User Interface > Menu Item Visibility > Quick Menu */
 
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_QUICK_MENU_SHOW_SHADERS,
-   "إظهار 'الأظلال'"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_QUICK_MENU_SHOW_SHADERS,
-   "إظهار خيارات 'الأظلال'."
-   )
 
 /* Settings > User Interface > Views > Settings */
 
@@ -5547,10 +5515,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_NARRATOR_MODE,
    "وضع المشرف"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_TOP,
-   "أعلى"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_ENTRY_REMOVE_ENABLE_HIST_FAV,
@@ -7486,6 +7450,10 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_CHEAT_SEARCH_SETTINGS,
    "بدء أو مواصلة البحث عن الغش"
+   )
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_RUN_MUSIC,
+   "تشغيل"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SECONDS,
@@ -9562,7 +9530,18 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_BRIGHTNESS_CONTROL,
    "زيادة أو تقليل سطوع الشاشة."
    )
-#ifdef HAVE_LIBNX
+
+#ifdef HAVE_LAKKA_SWITCH
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_SWITCH_GPU_PROFILE,
+   "GPU فوق الساعة"
+   )
+MSG_HASH(
+   MENU_ENUM_SUBLABEL_SWITCH_GPU_PROFILE,
+   "تبديل GPU على مدار الساعة أو تحت الساعة."
+   )
+#endif
+#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SWITCH_CPU_PROFILE,
    "تجاوز الساعة المعالج"
@@ -9621,12 +9600,6 @@ MSG_HASH(
    MENU_ENUM_LABEL_HELP_TIMEZONE,
    "يعرض قائمة بالمناطق الزمنية المتاحة. بعد تحديد منطقة زمنية، يتم تعديل الوقت والتاريخ إلى المنطقة الزمنية المحددة. ويفترض أن ساعة النظام/المعدات محددة على UTC."
    )
-#ifdef HAVE_LAKKA_SWITCH
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_OC_ENABLE,
-   "تجاوز الساعة المعالج"
-   )
-#endif
 MSG_HASH(
    MSG_LOCALAP_SWITCHING_OFF,
    "إيقاف تشغيل نقطة وصول Wi-Fi."
@@ -9663,8 +9636,6 @@ MSG_HASH(
    MSG_LOCALAP_ERROR_CONFIG_PARSE,
    "ملف تكوين خاطئ - تعذر العثور على APNAME أو PASSWORD في %s"
    )
-#endif
-#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 MSG_HASH(

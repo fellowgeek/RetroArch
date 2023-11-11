@@ -6368,7 +6368,7 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_SUBLABEL_MENU_WALLPAPER,
-   "A menu hátterében látható kép. A kézzel vagy dinamikusan megadott képek felülírják a színtémát."
+   "Háttérkép beállítása a menühöz."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MENU_WALLPAPER_OPACITY,
@@ -6461,9 +6461,9 @@ MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_MODE,
    "Az AI szolgáltatás eredménye"
    )
-MSG_HASH(
+MSG_HASH( /* FIXME What does the Narrator mode do? */
    MENU_ENUM_SUBLABEL_AI_SERVICE_MODE,
-   "Fordítás megjelenítése képrátétként (Kép mód), közvetlen hangként (Beszéd), felolvasott szöveként (Narrátor), vagy szöveges rátétként (Szöveg)."
+   "A fordítást szöveges rátétként jelenítse-e meg (Kép mód), vagy olvassa fel (Beszéd mód)."
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_AI_SERVICE_URL,
@@ -6504,30 +6504,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_SUBLABEL_AI_SERVICE_TARGET_LANG,
    "A fordítási szolgáltatás célnyelve. \"Alapértelmezett\" az angol."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_POLL_DELAY,
-   "Az AI szolgáltatás lekérdezési késleltetése"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_POLL_DELAY,
-   "Az automatikus hívások közti minimális késleltetés. Lassítja a reakcióidőt, de növeli a CPU teljesítményt."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION,
-   "Az AI szolgáltatás szöveg helyzetének felülbírálata"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_TEXT_POSITION,
-   "A rátét pozíciójának felülbírálása, amikor a szolgáltatás Szöveges módban van."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_PADDING,
-   "Az AI szolgáltatás szövegének kitöltése (%)"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_AI_SERVICE_TEXT_PADDING,
-   "A szöveges rátét függőleges kitöltése, amikor a szolgáltatás Szöveges módban van. Nagyobb kitöltés a szöveget a képernyő közepe felé mozdítja."
    )
 
 /* Settings > Accessibility */
@@ -7327,14 +7303,6 @@ MSG_HASH(
 MSG_HASH(
    MENU_ENUM_SUBLABEL_PLAYLIST_PORTABLE_PATHS,
    "Bekapcsolt állapotban, ha a fájlböngésző könyvtára is ki van választva, ennek értékét eltárolja a játéklistába. Ha más rendszeren töltik be a játéklistát, ahol ez a lehetőség ugyancsak engedélyezve van, a játéklista elérési útjait automatikusan hozzáigazítja a fájlböngésző könyvtárához, ha nem ugyanaz az értéke."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_PLAYLIST_USE_FILENAME,
-   "Fájlnevek használata a bélyegképek párosításához"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_PLAYLIST_USE_FILENAME,
-   "Bekapcsolva a bélyegképek keresése a bejegyzés fájlneve alapján történik, a címke helyett."
    )
    MSG_HASH(
    MENU_ENUM_LABEL_VALUE_MANAGE,
@@ -9725,26 +9693,6 @@ MSG_HASH(
    "Narrátor mód"
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_MODE,
-   "Szöveges mód"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_NARRATOR_MODE,
-   "Szöveg + narrátor"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_IMAGE_NARRATOR_MODE,
-   "Kép + narrátor"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_BOTTOM,
-   "Felfordítás"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_AI_SERVICE_TEXT_POSITION_TOP,
-   "Felül"
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PLAYLIST_ENTRY_REMOVE_ENABLE_HIST_FAV,
    "Előzmények és kedvencek"
    )
@@ -11737,7 +11685,7 @@ MSG_HASH(
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_RUN_MUSIC,
-   "Lejátszás a médialejátszóval"
+   "Futtatás"
    )
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SECONDS,
@@ -12276,22 +12224,6 @@ MSG_HASH( /* FIXME Should be MSG_ */
    "Mag telepítése sikertelen"
    )
 MSG_HASH(
-   MSG_AI_VIDEO_DRIVER_NOT_SUPPORTED,
-   "Az AI szolgáltatás nem támogatja ezt a videomeghajtót."
-   )
-MSG_HASH(
-   MSG_AI_AUTO_MODE_ENABLED,
-   "Automatikus fordítás engedélyezve."
-   )
-MSG_HASH(
-   MSG_AI_AUTO_MODE_DISABLED,
-   "Automatikus fordítás letiltva."
-   )
-MSG_HASH(
-   MSG_AI_NOTHING_TO_TRANSLATE,
-   "Nincs mit lefordítani."
-   )
-MSG_HASH(
    MSG_CHEAT_DELETE_ALL_INSTRUCTIONS,
    "Nyomja meg a jobbra gombot ötször minden csalás törléséhez."
    )
@@ -12747,10 +12679,6 @@ MSG_HASH(
 MSG_HASH(
    MSG_CONTENT_CRC32S_DIFFER,
    "A tartalmak CRC32-je eltér. Nem lehet eltérő játékokat használni."
-   )
-MSG_HASH(
-   MSG_CONTENT_NETPACKET_CRC32S_DIFFER,
-   "A kiszolgáló eltérő játékot futtat."
    )
 MSG_HASH(
    MSG_PING_TOO_HIGH,
@@ -14399,14 +14327,6 @@ MSG_HASH(
    "A Linux GameMode engedélyezése segíthet a késleltetésen, megjavíthatja a hang recsegését és az általános teljesítményt maximalizálhatja, a CPU és a GPU konfigurálásával a legjobb teljesítményhez.\nA GameMode programot ehhez telepíteni kell. A GameMode telepítési információi: https://github.com/FeralInteractive/gamemode."
    )
 MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_VIDEO_FRAME_REST,
-   "Képkocka pihentetés"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_VIDEO_FRAME_REST,
-   "A függőleges szinkron CPU használatának csökkentése, a képmegjelenítés után alvó módba állítás, ameddig csak lehetséges. Elsősorban külső scanline szinkronizáló programokhoz."
-   )
-MSG_HASH(
    MENU_ENUM_LABEL_VALUE_PAL60_ENABLE,
    "PAL60 mód használata"
    )
@@ -14502,7 +14422,18 @@ MSG_HASH(
    MENU_ENUM_SUBLABEL_BRIGHTNESS_CONTROL,
    "A kijelző fényerejének növelése vagy csökkentése."
    )
-#ifdef HAVE_LIBNX
+
+#ifdef HAVE_LAKKA_SWITCH
+MSG_HASH(
+   MENU_ENUM_LABEL_VALUE_SWITCH_GPU_PROFILE,
+   "GPU túlhajtás"
+   )
+MSG_HASH(
+   MENU_ENUM_SUBLABEL_SWITCH_GPU_PROFILE,
+   "A Switch GPU-jának túlhajtása vagy visszafogása."
+   )
+#endif
+#if defined(HAVE_LAKKA_SWITCH) || defined(HAVE_LIBNX)
 MSG_HASH(
    MENU_ENUM_LABEL_VALUE_SWITCH_CPU_PROFILE,
    "CPU túlhajtás"
@@ -14553,40 +14484,6 @@ MSG_HASH(
    MENU_ENUM_LABEL_HELP_TIMEZONE,
    "Az elérhető időzónák listájának megjelenítése. Időzóna választása után a dátum és az idő a kiválasztott időzónához lesz igazítva. Feltételezi, hogy a rendszer/hardver órája UTC-re van állítva."
    )
-#ifdef HAVE_LAKKA_SWITCH
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_LAKKA_SWITCH_OPTIONS,
-   "Nintendo Switch beállítások"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_LAKKA_SWITCH_OPTIONS,
-   "Nintendo Switch-en használatos beállítások kezelése."
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_OC_ENABLE,
-   "CPU túlhajtás"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_SWITCH_OC_ENABLE,
-   "CPU túlhajtás engedélyezése"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_SWITCH_CEC_ENABLE,
-   "CEC támogatás"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_SWITCH_CEC_ENABLE,
-   "CEC kapcsolódás engedélyezése a TV-hez dokkoláskor"
-   )
-MSG_HASH(
-   MENU_ENUM_LABEL_VALUE_BLUETOOTH_ERTM_DISABLE,
-   "Bluetooth ERTM kikapcsolás"
-   )
-MSG_HASH(
-   MENU_ENUM_SUBLABEL_BLUETOOTH_ERTM_DISABLE,
-   "A Bluetooth ERTM letiltása, amely gondot okoz néhány eszköz párosításánál"
-   )
-#endif
 MSG_HASH(
    MSG_LOCALAP_SWITCHING_OFF,
    "Wi-Fi hozzáférési pont kikapcsolása."
@@ -14623,8 +14520,6 @@ MSG_HASH(
    MSG_LOCALAP_ERROR_CONFIG_PARSE,
    "Rossz konfigurációs fájl - nincs APNAME vagy PASSWORD itt: %s"
    )
-#endif
-#ifdef HAVE_LAKKA_SWITCH
 #endif
 #ifdef GEKKO
 MSG_HASH(

@@ -90,6 +90,9 @@
 
 #ifdef HAVE_LIBNX
 #include <switch.h>
+#endif
+
+#if defined(HAVE_LAKKA) || defined(HAVE_LIBNX)
 #include "switch_performance_profiles.h"
 #endif
 
@@ -296,7 +299,6 @@ extern const bluetooth_driver_t *bluetooth_drivers[];
 struct rarch_state
 {
    char *connect_host; /* Netplay hostname passed from CLI */
-   char *connect_mitm_id; /* Netplay MITM address from CLI */
 
    struct retro_perf_counter *perf_counters_rarch[MAX_COUNTERS];
 
@@ -601,24 +603,12 @@ static float audio_driver_monitor_adjust_system_rates(
       double input_fps,
       float video_refresh_rate,
       unsigned video_swap_interval,
-      unsigned black_frame_insertion,
       float audio_max_timing_skew)
 {
    float inp_sample_rate        = input_sample_rate;
-
-   /*  This much like the auto swap interval algorithm and will
-    *  find the correct desired target rate the majority of sane
-    *  cases. Any failures should be no worse than the previous
-    *  very incomplete high hz skew adjustments. */
-   float refresh_ratio                   = video_refresh_rate/input_fps;
-   unsigned refresh_closest_multiple     = (unsigned)(refresh_ratio + 0.5f);
-   float target_video_sync_rate          = video_refresh_rate;
-   float timing_skew                     = 0.0f;
-
-   if (refresh_closest_multiple > 1)
-      target_video_sync_rate /= (((float)black_frame_insertion + 1.0f) * (float)video_swap_interval);
-
-   timing_skew            =
+   float target_video_sync_rate = video_refresh_rate
+         / (float)video_swap_interval;
+   float timing_skew            =
       fabs(1.0f - input_fps / target_video_sync_rate);
    if (timing_skew <= audio_max_timing_skew)
       return (inp_sample_rate * target_video_sync_rate / input_fps);
@@ -632,23 +622,18 @@ static bool video_driver_monitor_adjust_system_rates(
       bool vrr_runloop_enable,
       float audio_max_timing_skew,
       unsigned video_swap_interval,
-      unsigned black_frame_insertion,
       double input_fps)
 {
    float target_video_sync_rate = timing_skew_hz;
 
-   /* Same concept as for audio driver adjust. */
-   float refresh_ratio                   = target_video_sync_rate/input_fps;
-   unsigned refresh_closest_multiple     = (unsigned)(refresh_ratio + 0.5f);
-   float timing_skew                     = 0.0f;
-
-   if (refresh_closest_multiple > 1)
-      target_video_sync_rate /= (((float)black_frame_insertion + 1.0f) * (float)video_swap_interval);
+   /* Divide target rate only when using Auto interval */
+   if (_video_swap_interval == 0)
+      target_video_sync_rate /= (float)video_swap_interval;
 
    if (!vrr_runloop_enable)
    {
-      timing_skew         =
-         fabs(1.0f - input_fps / target_video_sync_rate);
+      float timing_skew                    = fabs(
+            1.0f - input_fps / target_video_sync_rate);
       /* We don't want to adjust pitch too much. If we have extreme cases,
        * just don't readjust at all. */
       if (timing_skew <= audio_max_timing_skew)
@@ -669,8 +654,7 @@ static void driver_adjust_system_rates(
       float video_refresh_rate,
       float audio_max_timing_skew,
       bool video_adaptive_vsync,
-      unsigned video_swap_interval,
-      unsigned black_frame_insertion)
+      unsigned video_swap_interval)
 {
    struct retro_system_av_info *av_info   = &video_st->av_info;
    const struct retro_system_timing *info =
@@ -684,7 +668,6 @@ static void driver_adjust_system_rates(
          vrr_runloop_enable,
          (video_st->flags & VIDEO_FLAG_CRT_SWITCHING_ACTIVE) ? true : false,
          video_swap_interval,
-         black_frame_insertion,
          audio_max_timing_skew,
          video_refresh_rate,
          input_fps);
@@ -703,7 +686,6 @@ static void driver_adjust_system_rates(
                   input_fps,
                   video_refresh_rate,
                   video_swap_interval,
-                  black_frame_insertion,
                   audio_max_timing_skew);
 
       RARCH_LOG("[Audio]: Set audio input rate to: %.2f Hz.\n",
@@ -727,7 +709,6 @@ static void driver_adjust_system_rates(
                vrr_runloop_enable,
                audio_max_timing_skew,
                video_swap_interval,
-               black_frame_insertion,
                input_fps))
       {
          /* We won't be able to do VSync reliably
@@ -847,8 +828,7 @@ void drivers_init(
                                  settings->floats.video_refresh_rate,
                                  settings->floats.audio_max_timing_skew,
                                  settings->bools.video_adaptive_vsync,
-                                 settings->uints.video_swap_interval,
-                                 settings->uints.video_black_frame_insertion
+                                 settings->uints.video_swap_interval
                                  );
 
    /* Initialize video driver */
@@ -1070,9 +1050,11 @@ void drivers_init(
    if (flags & DRIVER_MIDI_MASK)
       midi_driver_init(settings);
 
+#ifndef HAVE_LAKKA_SWITCH
 #ifdef HAVE_LAKKA
    cpu_scaling_driver_init();
 #endif
+#endif /* #ifndef HAVE_LAKKA_SWITCH */
 }
 
 void driver_uninit(int flags, enum driver_lifetime_flags lifetime_flags)
@@ -1171,9 +1153,11 @@ void driver_uninit(int flags, enum driver_lifetime_flags lifetime_flags)
    if (flags & DRIVER_MIDI_MASK)
       midi_driver_free();
 
+#ifndef HAVE_LAKKA_SWITCH
 #ifdef HAVE_LAKKA
    cpu_scaling_driver_free();
 #endif
+#endif /* #ifndef HAVE_LAKKA_SWITCH */
 }
 
 static void retroarch_deinit_drivers(struct retro_callbacks *cbs)
@@ -1282,8 +1266,6 @@ bool driver_ctl(enum driver_ctl_state state, void *data)
             float audio_max_timing_skew   = settings->floats.audio_max_timing_skew;
             bool video_adaptive_vsync     = settings->bools.video_adaptive_vsync;
             unsigned video_swap_interval  = settings->uints.video_swap_interval;
-            unsigned
-               black_frame_insertion      = settings->uints.video_black_frame_insertion;
 
             video_monitor_set_refresh_rate(*hz);
 
@@ -1297,8 +1279,7 @@ bool driver_ctl(enum driver_ctl_state state, void *data)
                                        video_refresh_rate,
                                        audio_max_timing_skew,
                                        video_adaptive_vsync,
-                                       video_swap_interval,
-                                       black_frame_insertion
+                                       video_swap_interval
                                        );
          }
          break;
@@ -2036,26 +2017,11 @@ enum rarch_content_type path_is_media_type(const char *path)
       case FILE_TYPE_MXF:
          return RARCH_CONTENT_MOVIE;
       case FILE_TYPE_WMA:
-      case FILE_TYPE_M4A:
-#endif
-#if defined(HAVE_FFMPEG) || defined(HAVE_MPV) || defined(HAVE_AUDIOMIXER)
-#if !defined(HAVE_AUDIOMIXER) || defined(HAVE_STB_VORBIS)
       case FILE_TYPE_OGG:
-#endif
-#if !defined(HAVE_AUDIOMIXER) || defined(HAVE_DR_MP3)
       case FILE_TYPE_MP3:
-#endif
-#if !defined(HAVE_AUDIOMIXER) || defined(HAVE_DR_FLAC)
+      case FILE_TYPE_M4A:
       case FILE_TYPE_FLAC:
-#endif
-#if !defined(HAVE_AUDIOMIXER) || defined(HAVE_RWAV)
       case FILE_TYPE_WAV:
-#endif
-#if !defined(HAVE_AUDIOMIXER) || defined(HAVE_IBXM)
-      case FILE_TYPE_MOD:
-      case FILE_TYPE_S3M:
-      case FILE_TYPE_XM:
-#endif
          return RARCH_CONTENT_MUSIC;
 #endif
 #ifdef HAVE_IMAGEVIEWER
@@ -2065,6 +2031,13 @@ enum rarch_content_type path_is_media_type(const char *path)
       case FILE_TYPE_BMP:
          return RARCH_CONTENT_IMAGE;
 #endif
+#ifdef HAVE_IBXM
+      case FILE_TYPE_MOD:
+      case FILE_TYPE_S3M:
+      case FILE_TYPE_XM:
+         return RARCH_CONTENT_MUSIC;
+#endif
+
       case FILE_TYPE_NONE:
       default:
          break;
@@ -2244,9 +2217,6 @@ bool command_event(enum event_command cmd, void *data)
 #if defined(HAVE_ACCESSIBILITY) || defined(HAVE_TRANSLATE)
    access_state_t *access_st       = access_state_get_ptr();
 #endif
-#if defined(HAVE_TRANSLATE) && defined(HAVE_GFX_WIDGETS)
-   dispgfx_widget_t *p_dispwidget  = dispwidget_get_ptr();
-#endif
 #ifdef HAVE_MENU
    struct menu_state *menu_st      = menu_state_get_ptr();
 #endif
@@ -2263,12 +2233,12 @@ bool command_event(enum event_command cmd, void *data)
 #ifdef HAVE_OVERLAY
          input_overlay_unload();
 #endif
-#ifdef HAVE_TRANSLATE
-         translation_release(true);
-#ifdef HAVE_GFX_WIDGETS
-         if (p_dispwidget->ai_service_overlay_state != 0)
+#if defined(HAVE_TRANSLATE) && defined(HAVE_GFX_WIDGETS)
+         /* Because the overlay is a display widget,
+          * it's going to be written
+          * over the menu, so we unset it here. */
+         if (dispwidget_get_ptr()->ai_service_overlay_state != 0)
             gfx_widgets_ai_service_overlay_unload();
-#endif
 #endif
          break;
       case CMD_EVENT_OVERLAY_INIT:
@@ -2342,11 +2312,6 @@ bool command_event(enum event_command cmd, void *data)
                            accessibility_narrator_speech_speed,
                            (char*)msg_hash_to_str(MSG_UNPAUSED), 10);
 #endif
-#ifdef HAVE_GFX_WIDGETS
-                  if (p_dispwidget->ai_service_overlay_state != 0)
-                     gfx_widgets_ai_service_overlay_unload();
-#endif
-                  translation_release(true);
                   command_event(CMD_EVENT_UNPAUSE, NULL);
                }
                else /* Pause on call */
@@ -2365,25 +2330,17 @@ bool command_event(enum event_command cmd, void *data)
                 * Also, this mode is required for "auto" translation
                 * packages, since you don't want to pause for that.
                 */
-               if (access_st->ai_service_auto != 0)
+               if (access_st->ai_service_auto == 2)
                {
                   /* Auto mode was turned on, but we pressed the
                    * toggle button, so turn it off now. */
-                  translation_release(true);
-#ifdef HAVE_GFX_WIDGETS
-                  if (p_dispwidget->ai_service_overlay_state != 0)
-                     gfx_widgets_ai_service_overlay_unload();
+                  access_st->ai_service_auto = 0;
+#ifdef HAVE_MENU_WIDGETS
+                  gfx_widgets_ai_service_overlay_unload();
 #endif
                }
-               else 
-               {
-#ifdef HAVE_GFX_WIDGETS
-                  if (p_dispwidget->ai_service_overlay_state != 0)
-                     gfx_widgets_ai_service_overlay_unload();
-                  else
-#endif
-                     command_event(CMD_EVENT_AI_SERVICE_CALL, NULL);
-               }
+               else
+                  command_event(CMD_EVENT_AI_SERVICE_CALL, NULL);
             }
 #endif
             break;
@@ -3807,7 +3764,7 @@ bool command_event(enum event_command cmd, void *data)
       case CMD_EVENT_NETPLAY_INIT:
          {
             char tmp_netplay_server[256];
-            char tmp_netplay_session[256];
+            char tmp_netplay_session[sizeof(tmp_netplay_server)];
             char *netplay_server  = NULL;
             char *netplay_session = NULL;
             unsigned netplay_port = 0;
@@ -3823,14 +3780,10 @@ bool command_event(enum event_command cmd, void *data)
                netplay_server  = tmp_netplay_server;
                netplay_session = tmp_netplay_session;
             }
-
-            if (p_rarch->connect_mitm_id)
-                netplay_session = strdup(p_rarch->connect_mitm_id);
-
             if (p_rarch->connect_host)
             {
-                free(p_rarch->connect_host);
-                p_rarch->connect_host = NULL;
+               free(p_rarch->connect_host);
+               p_rarch->connect_host = NULL;
             }
 
             if (string_is_empty(netplay_server))
@@ -3841,22 +3794,7 @@ bool command_event(enum event_command cmd, void *data)
             if (!init_netplay(netplay_server, netplay_port, netplay_session))
             {
                command_event(CMD_EVENT_NETPLAY_DEINIT, NULL);
-               if (p_rarch->connect_mitm_id)
-               {
-                  free(p_rarch->connect_mitm_id);
-                  free(netplay_session);
-                  p_rarch->connect_mitm_id = NULL;
-                  netplay_session          = NULL;
-               }
                return false;
-            }
-
-            if (p_rarch->connect_mitm_id)
-            {
-               free(p_rarch->connect_mitm_id);
-               free(netplay_session);
-               p_rarch->connect_mitm_id = NULL;
-               netplay_session          = NULL;
             }
 
             /* Disable rewind & SRAM autosave if it was enabled
@@ -3874,7 +3812,7 @@ bool command_event(enum event_command cmd, void *data)
       case CMD_EVENT_NETPLAY_INIT_DIRECT:
          {
             char netplay_server[256];
-            char netplay_session[256];
+            char netplay_session[sizeof(netplay_server)];
             unsigned netplay_port = 0;
 
             command_event(CMD_EVENT_NETPLAY_DEINIT, NULL);
@@ -3911,7 +3849,7 @@ bool command_event(enum event_command cmd, void *data)
       case CMD_EVENT_NETPLAY_INIT_DIRECT_DEFERRED:
          {
             char netplay_server[256];
-            char netplay_session[256];
+            char netplay_session[sizeof(netplay_server)];
             unsigned netplay_port = 0;
 
             command_event(CMD_EVENT_NETPLAY_DEINIT, NULL);
@@ -4497,6 +4435,10 @@ bool command_event(enum event_command cmd, void *data)
                if (data)
                   paused = *((bool*)data);
 
+               if (     (access_st->ai_service_auto == 0)
+                     && !settings->bools.ai_service_pause)
+                  access_st->ai_service_auto = 1;
+
                run_translation_service(settings, paused);
             }
 #endif
@@ -4811,11 +4753,7 @@ void main_exit(void *args)
 #if defined(HAVE_LOGGER) && !defined(ANDROID)
    logger_shutdown();
 #endif
-#ifdef PS2
-   /* PS2 frontend driver deinit also detaches filesystem,
-    * so make sure logs are written in advance. */
-   retro_main_log_file_deinit();
-#endif
+
    frontend_driver_deinit(args);
    frontend_driver_exitspawn(
          path_get_ptr(RARCH_PATH_CORE),
@@ -5377,8 +5315,6 @@ static void retroarch_print_help(const char *arg0)
          "Connect to netplay server as user 2.\n"
          "      --port=PORT                "
          "Port used to netplay. Default is 55435.\n"
-         "      --mitm-session=ID           "
-         "MITM (relay) session ID to join.\n"
          "      --nick=NICK                "
          "Picks a username (for use with netplay). Not mandatory.\n"
          "      --check-frames=NUMBER      "
@@ -5690,7 +5626,6 @@ static bool retroarch_parse_input_and_config(
 #ifdef HAVE_NETWORKING
       { "host",               0, NULL, 'H' },
       { "connect",            1, NULL, 'C' },
-      { "mitm-session",       1, NULL, 'T' },
       { "check-frames",       1, NULL, RA_OPT_CHECK_FRAMES },
       { "port",               1, NULL, RA_OPT_PORT },
 #ifdef HAVE_NETWORK_CMD
@@ -5929,10 +5864,6 @@ static bool retroarch_parse_input_and_config(
    if (!(p_rarch->flags & RARCH_FLAGS_BLOCK_CONFIG_READ))
 #endif
    {
-      /* Workaround for libdecor 0.2.0 setting unwanted locale */
-#if defined(HAVE_WAYLAND) && defined(HAVE_DYNAMIC)
-      setlocale(LC_NUMERIC,"C");
-#endif      
       /* If this is a static build, load salamander
        * config file first (sets RARCH_PATH_CORE) */
 #if !defined(HAVE_DYNAMIC)
@@ -6122,10 +6053,6 @@ static bool retroarch_parse_input_and_config(
                      RARCH_OVERRIDE_SETTING_NETPLAY_MODE, NULL);
                netplay_driver_ctl(RARCH_NETPLAY_CTL_ENABLE_CLIENT, NULL);
                p_rarch->connect_host = strdup(optarg);
-               break;
-
-            case 'T':
-               p_rarch->connect_mitm_id = strdup(optarg);
                break;
 
             case RA_OPT_CHECK_FRAMES:
@@ -7193,9 +7120,6 @@ bool retroarch_main_quit(void)
    video_driver_state_t*video_st = video_state_get_ptr();
    settings_t *settings          = config_get_ptr();
    bool config_save_on_exit      = settings->bools.config_save_on_exit;
-#ifdef HAVE_ACCESSIBILITY
-   access_state_t *access_st     = access_state_get_ptr();
-#endif
    struct retro_system_av_info *av_info = &video_st->av_info;
 
    /* Restore video driver before saving */
@@ -7294,17 +7218,6 @@ bool retroarch_main_quit(void)
    retroarch_menu_running_finished(true);
 #endif
 
-#ifdef HAVE_ACCESSIBILITY
-   translation_release(false);
-#ifdef HAVE_THREADS
-   if (access_st->image_lock)
-   {
-      slock_free(access_st->image_lock);
-      access_st->image_lock = NULL;
-   }
-#endif
-#endif
-
    return true;
 }
 
@@ -7358,7 +7271,6 @@ enum retro_language retroarch_get_language_from_iso(const char *iso639)
       {"en_GB", RETRO_LANGUAGE_BRITISH_ENGLISH},
       {"en", RETRO_LANGUAGE_ENGLISH},
       {"hu", RETRO_LANGUAGE_HUNGARIAN},
-      {"be", RETRO_LANGUAGE_BELARUSIAN},
    };
 
    if (string_is_empty(iso639))

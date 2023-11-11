@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		070A88432A4E7AA9003161C0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 070A88422A4E7AA9003161C0 /* OpenAL.framework */; };
+		0714E7142983A5AC00E6B45B /* libMoltenVK.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0714E7132983A5AC00E6B45B /* libMoltenVK.dylib */; };
 		0714E7152983A5E500E6B45B /* libMoltenVK.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 0714E7132983A5AC00E6B45B /* libMoltenVK.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		0718BC632ABBAFB6001F2CBE /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0718BC5F2ABBA807001F2CBE /* Network.framework */; };
-		0734BB242ADB7FEE00EBDCAD /* libMoltenVK.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 92EDD1622982E40C00AD33B4 /* libMoltenVK.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		073734A42A093A5700BF7397 /* JITSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A1F81727006CAE00DEAD2A /* JITSupport.m */; };
 		073734A62A093ACA00BF7397 /* AltKit in Frameworks */ = {isa = PBXBuildFile; productRef = 073734A52A093ACA00BF7397 /* AltKit */; };
 		0789FC302A07847E00D042B7 /* AltKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0789FC2F2A07847E00D042B7 /* AltKit */; };
@@ -111,6 +110,10 @@
 		92CC05C721FEDD0B00FF79F0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92CC05C621FEDD0B00FF79F0 /* MobileCoreServices.framework */; };
 		92DAF33F277A370600FE2A9E /* EmulatorTouchMouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DAF33E277A370600FE2A9E /* EmulatorTouchMouse.swift */; };
 		92E5DCD4231A5786006491BF /* modules in Resources */ = {isa = PBXBuildFile; fileRef = 92E5DCD3231A5786006491BF /* modules */; };
+		92EDD1632982E40C00AD33B4 /* libMoltenVK.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 92EDD1622982E40C00AD33B4 /* libMoltenVK.dylib */; };
+		92EDD1642982E40D00AD33B4 /* libMoltenVK.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 92EDD1622982E40C00AD33B4 /* libMoltenVK.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		E209904C2AFF169C000EDE25 /* BIOS in Resources */ = {isa = PBXBuildFile; fileRef = E209904B2AFF169C000EDE25 /* BIOS */; };
+		E209904D2AFF169C000EDE25 /* BIOS in Resources */ = {isa = PBXBuildFile; fileRef = E209904B2AFF169C000EDE25 /* BIOS */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,17 +138,6 @@
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0734BB252ADB7FEE00EBDCAD /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0734BB242ADB7FEE00EBDCAD /* libMoltenVK.dylib in Embed Libraries */,
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9292D6F528F549D500E47A75 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -157,12 +149,22 @@
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		92EDD1652982E40D00AD33B4 /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				92EDD1642982E40D00AD33B4 /* libMoltenVK.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		070A88422A4E7AA9003161C0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		0714E7132983A5AC00E6B45B /* libMoltenVK.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMoltenVK.dylib; path = tvOS/modules/libMoltenVK.dylib; sourceTree = "<group>"; };
-		0718BC5F2ABBA807001F2CBE /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS17.0.sdk/System/Library/Frameworks/Network.framework; sourceTree = DEVELOPER_DIR; };
 		0789FC2E2A07845300D042B7 /* AltKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AltKit; path = Frameworks/AltKit; sourceTree = "<group>"; };
 		07B7872C29E8FE8F0088B74F /* filters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = filters; sourceTree = "<group>"; };
 		07F7FB012A2DA8B800037C04 /* filters */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = filters; path = iOS/filters; sourceTree = SOURCE_ROOT; };
@@ -449,6 +451,7 @@
 		96AFAE2D16C1D4EA009DE44C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		96AFAE2F16C1D4EA009DE44C /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		96AFAE3116C1D4EA009DE44C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		E209904B2AFF169C000EDE25 /* BIOS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BIOS; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -462,6 +465,7 @@
 				92CC05C521FEDC9F00FF79F0 /* CFNetwork.framework in Frameworks */,
 				9204BE121D319EF300BD49DB /* libz.dylib in Frameworks */,
 				9204BE131D319EF300BD49DB /* QuartzCore.framework in Frameworks */,
+				92EDD1632982E40C00AD33B4 /* libMoltenVK.dylib in Frameworks */,
 				9204BE141D319EF300BD49DB /* GameController.framework in Frameworks */,
 				9204BE151D319EF300BD49DB /* CoreText.framework in Frameworks */,
 				9204BE161D319EF300BD49DB /* CoreLocation.framework in Frameworks */,
@@ -484,10 +488,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0714E7142983A5AC00E6B45B /* libMoltenVK.dylib in Frameworks */,
 				926C77F121FD26E800103EDE /* GameController.framework in Frameworks */,
 				926C77EF21FD263800103EDE /* AudioToolbox.framework in Frameworks */,
 				073734A62A093ACA00BF7397 /* AltKit in Frameworks */,
-				0718BC632ABBAFB6001F2CBE /* Network.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1150,6 +1154,7 @@
 		96AFAE1A16C1D4EA009DE44C = {
 			isa = PBXGroup;
 			children = (
+				E209904B2AFF169C000EDE25 /* BIOS */,
 				0789FC2D2A07845300D042B7 /* Packages */,
 				96AFAE9C16C1D976009DE44C /* Main Entry Core */,
 				92B9EAE024E04F8800E6CFB2 /* Sources */,
@@ -1182,7 +1187,6 @@
 		96AFAE2816C1D4EA009DE44C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0718BC5F2ABBA807001F2CBE /* Network.framework */,
 				070A88422A4E7AA9003161C0 /* OpenAL.framework */,
 				92EDD1622982E40C00AD33B4 /* libMoltenVK.dylib */,
 				0714E7132983A5AC00E6B45B /* libMoltenVK.dylib */,
@@ -1254,7 +1258,7 @@
 				9204BE271D319EF300BD49DB /* ShellScript */,
 				9204BE211D319EF300BD49DB /* Resources */,
 				9292D6F528F549D500E47A75 /* Embed Foundation Extensions */,
-				0734BB252ADB7FEE00EBDCAD /* Embed Libraries */,
+				92EDD1652982E40D00AD33B4 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -1319,13 +1323,11 @@
 				ORGANIZATIONNAME = RetroArch;
 				TargetAttributes = {
 					9204BE091D319EF300BD49DB = {
-						DevelopmentTeam = UK699V5ZS8;
 						DevelopmentTeamName = RetroArch;
 						LastSwiftMigration = 1240;
 					};
 					926C77D621FD1E6500103EDE = {
 						CreatedOnToolsVersion = 10.1;
-						DevelopmentTeam = UK699V5ZS8;
 						ProvisioningStyle = Automatic;
 					};
 					9292D6E028F549D000E47A75 = {
@@ -1367,6 +1369,7 @@
 				9222F2092315DAD50097C0FD /* Launch Screen.storyboard in Resources */,
 				9204BE231D319EF300BD49DB /* InfoPlist.strings in Resources */,
 				92CC05BC21FE3C1700FF79F0 /* GCDWebUploader.bundle in Resources */,
+				E209904C2AFF169C000EDE25 /* BIOS in Resources */,
 				9222F20B2315DD3D0097C0FD /* retroarch_logo.png in Resources */,
 				929784502200EEE400989A60 /* iOS/Resources/Media.xcassets in Resources */,
 				9204BE261D319EF300BD49DB /* iOS/modules in Resources */,
@@ -1379,6 +1382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07B7872D29E8FE8F0088B74F /* filters in Resources */,
+				E209904D2AFF169C000EDE25 /* BIOS in Resources */,
 				92CC05BD21FE3C1700FF79F0 /* GCDWebUploader.bundle in Resources */,
 				92E5DCD4231A5786006491BF /* modules in Resources */,
 				9222F2002314BA7C0097C0FD /* assets.zip in Resources */,
@@ -1549,7 +1553,7 @@
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				CURRENT_PROJECT_VERSION = 1.16.0;
 				DEPS_DIR = "$(SRCBASE)/deps";
-				DEVELOPMENT_TEAM = UK699V5ZS8;
+				DEVELOPMENT_TEAM = 7D4344PZ7V;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
@@ -1572,31 +1576,106 @@
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_NO_PIE = NO;
+				LD_NO_PIE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@executable_path/modules",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/iOS/modules";
 				MARKETING_VERSION = 1.16.0;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
+					"-DDONT_WANT_ARM_OPTIMIZATIONS",
+					"-DENABLE_HLSL",
+					"-DGLES_SILENCE_DEPRECATION",
+					"-DGLSLANG_OSINCLUDE_UNIX",
+					"-DHAVE_7ZIP",
+					"-DHAVE_AL",
+					"-DHAVE_ALTKIT",
+					"-DHAVE_AUDIOMIXER",
+					"-DHAVE_BTSTACK",
+					"-DHAVE_BUILTINGLSLANG",
+					"-DHAVE_BUILTINMBEDTLS",
+					"-DHAVE_BUILTINMINIUPNPC",
+					"-DHAVE_CC_RESAMPLER",
+					"-DHAVE_CHD",
+					"-DHAVE_CHEATS",
+					"-DHAVE_CHEEVOS",
+					"-DHAVE_CLOUDSYNC",
+					"-DHAVE_COCOATOUCH",
+					"-DHAVE_COCOA_METAL",
+					"-DHAVE_CONFIGFILE",
+					"-DHAVE_COREAUDIO",
 					"-DHAVE_COREMOTION",
+					"-DHAVE_DSP_FILTER",
+					"-DHAVE_DYNAMIC",
+					"-DHAVE_FILTERS_BUILTIN",
+					"-DHAVE_GFX_WIDGETS",
+					"-DHAVE_GLSL",
+					"-DHAVE_GLSLANG",
+					"-DHAVE_GRIFFIN",
+					"-DHAVE_HID",
+					"-DHAVE_IFINFO",
+					"-DHAVE_IMAGEVIEWER",
 					"-DHAVE_IOS_CUSTOMKEYBOARD",
 					"-DHAVE_IOS_SWIFT",
 					"-DHAVE_IOS_TOUCHMOUSE",
+					"-DHAVE_KEYMAPPER",
+					"-DHAVE_LANGEXTRA",
+					"-DHAVE_LIBRETRODB",
+					"-DHAVE_MAIN",
 					"-DHAVE_MATERIALUI",
+					"-DHAVE_MENU",
+					"-DHAVE_METAL",
+					"-DHAVE_MFI",
+					"-DHAVE_MINIUPNPC",
+					"-DHAVE_NETPLAYDISCOVERY",
+					"-DHAVE_NETPLAYDISCOVERY_NSNET",
+					"-DHAVE_NETWORKGAMEPAD",
+					"-DHAVE_NETWORKING",
+					"-DHAVE_ONLINE_UPDATER",
+					"-DHAVE_OPENGL",
+					"-DHAVE_OPENGLES",
+					"-DHAVE_OPENGLES2",
 					"-DHAVE_OVERLAY",
-					"$(inherited)",
-				);
-				"OTHER_CFLAGS[sdk=iphoneos*]" = (
+					"-DHAVE_OZONE",
+					"-DHAVE_PATCH",
+					"-DHAVE_RBMP",
+					"-DHAVE_REWIND",
+					"-DHAVE_RGUI",
+					"-DHAVE_RJPEG",
+					"-DHAVE_RPNG",
+					"-DHAVE_RTGA",
+					"-DHAVE_BSV_MOVIE",
+					"-DHAVE_RUNAHEAD",
+					"-DHAVE_RWAV",
+					"-DHAVE_SCREENSHOTS",
+					"-DHAVE_SHADERPIPELINE",
+					"-DHAVE_SLANG",
+					"-DHAVE_SPIRV_CROSS",
+					"-DHAVE_SSL",
+					"-DHAVE_STB_FONT",
+					"-DHAVE_STB_VORBIS",
+					"-DHAVE_THREADS",
+					"-DHAVE_TRANSLATE",
+					"-DHAVE_UPDATE_ASSETS",
+					"-DHAVE_UPDATE_CORE_INFO",
+					"-DHAVE_VIDEO_FILTER",
 					"-DHAVE_VULKAN",
-					"$(inherited)",
+					"-DHAVE_XMB",
+					"-DHAVE_ZLIB",
+					"-DINLINE=inline",
+					"-DIOS",
+					"-DRARCH_INTERNAL",
+					"-DRARCH_MOBILE",
+					"-DRC_DISABLE_LUA",
+					"-DWANT_GLSLANG",
+					"-D_7ZIP_ST",
+					"-D_LZMA_UINT32_IS_ULONG",
+					"-D__LIBRETRO__",
 				);
-				"OTHER_CFLAGS[sdk=iphonesimulator*]" = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.libretro.RetroArchiOS11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.libretro.RetroArchiOS11.fellowgeek;
 				PRODUCT_NAME = RetroArch;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1625,7 +1704,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.16.0;
 				DEPS_DIR = "$(SRCBASE)/deps";
-				DEVELOPMENT_TEAM = UK699V5ZS8;
+				DEVELOPMENT_TEAM = 7D4344PZ7V;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
@@ -1648,30 +1727,107 @@
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_NO_PIE = NO;
+				LD_NO_PIE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@executable_path/modules",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/iOS/modules";
 				MARKETING_VERSION = 1.16.0;
 				MTL_FAST_MATH = YES;
 				OTHER_CFLAGS = (
-					"$(inherited)",
+					"-DDONT_WANT_ARM_OPTIMIZATIONS",
+					"-DENABLE_HLSL",
+					"-DGLES_SILENCE_DEPRECATION",
+					"-DGLSLANG_OSINCLUDE_UNIX",
+					"-DHAVE_7ZIP",
+					"-DHAVE_AL",
+					"-DHAVE_ALTKIT",
+					"-DHAVE_AUDIOMIXER",
+					"-DHAVE_BTSTACK",
+					"-DHAVE_BUILTINGLSLANG",
+					"-DHAVE_BUILTINMBEDTLS",
+					"-DHAVE_BUILTINMINIUPNPC",
+					"-DHAVE_CC_RESAMPLER",
+					"-DHAVE_CHD",
+					"-DHAVE_CHEATS",
+					"-DHAVE_CHEEVOS",
+					"-DHAVE_CLOUDSYNC",
+					"-DHAVE_COCOATOUCH",
+					"-DHAVE_COCOA_METAL",
+					"-DHAVE_CONFIGFILE",
+					"-DHAVE_COREAUDIO",
 					"-DHAVE_COREMOTION",
+					"-DHAVE_DSP_FILTER",
+					"-DHAVE_DYNAMIC",
+					"-DHAVE_FILTERS_BUILTIN",
+					"-DHAVE_GFX_WIDGETS",
+					"-DHAVE_GLSL",
+					"-DHAVE_GLSLANG",
+					"-DHAVE_GRIFFIN",
+					"-DHAVE_HID",
+					"-DHAVE_IFINFO",
+					"-DHAVE_IMAGEVIEWER",
 					"-DHAVE_IOS_CUSTOMKEYBOARD",
 					"-DHAVE_IOS_SWIFT",
 					"-DHAVE_IOS_TOUCHMOUSE",
+					"-DHAVE_KEYMAPPER",
+					"-DHAVE_LANGEXTRA",
+					"-DHAVE_LIBRETRODB",
+					"-DHAVE_MAIN",
 					"-DHAVE_MATERIALUI",
+					"-DHAVE_MENU",
+					"-DHAVE_METAL",
+					"-DHAVE_MFI",
+					"-DHAVE_MINIUPNPC",
+					"-DHAVE_NETPLAYDISCOVERY",
+					"-DHAVE_NETPLAYDISCOVERY_NSNET",
+					"-DHAVE_NETWORKGAMEPAD",
+					"-DHAVE_NETWORKING",
+					"-DHAVE_ONLINE_UPDATER",
+					"-DHAVE_OPENGL",
+					"-DHAVE_OPENGLES",
+					"-DHAVE_OPENGLES2",
 					"-DHAVE_OVERLAY",
-				);
-				"OTHER_CFLAGS[sdk=iphoneos*]" = (
+					"-DHAVE_OZONE",
+					"-DHAVE_PATCH",
+					"-DHAVE_RBMP",
+					"-DHAVE_REWIND",
+					"-DHAVE_RGUI",
+					"-DHAVE_RJPEG",
+					"-DHAVE_RPNG",
+					"-DHAVE_RTGA",
+					"-DHAVE_BSV_MOVIE",
+					"-DHAVE_RUNAHEAD",
+					"-DHAVE_RWAV",
+					"-DHAVE_SCREENSHOTS",
+					"-DHAVE_SHADERPIPELINE",
+					"-DHAVE_SLANG",
+					"-DHAVE_SPIRV_CROSS",
+					"-DHAVE_SSL",
+					"-DHAVE_STB_FONT",
+					"-DHAVE_STB_VORBIS",
+					"-DHAVE_THREADS",
+					"-DHAVE_TRANSLATE",
+					"-DHAVE_UPDATE_ASSETS",
+					"-DHAVE_UPDATE_CORE_INFO",
+					"-DHAVE_VIDEO_FILTER",
 					"-DHAVE_VULKAN",
-					"$(inherited)",
+					"-DHAVE_XMB",
+					"-DHAVE_ZLIB",
+					"-DINLINE=inline",
+					"-DIOS",
+					"-DNDEBUG",
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-DRARCH_INTERNAL",
+					"-DRARCH_MOBILE",
+					"-DRC_DISABLE_LUA",
+					"-DWANT_GLSLANG",
+					"-D_7ZIP_ST",
+					"-D_LZMA_UINT32_IS_ULONG",
+					"-D__LIBRETRO__",
 				);
-				"OTHER_CFLAGS[sdk=iphonesimulator*]" = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.libretro.RetroArchiOS11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.libretro.RetroArchiOS11.fellowgeek;
 				PRODUCT_NAME = RetroArch;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1718,7 +1874,7 @@
 				CURRENT_PROJECT_VERSION = 1.16.0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPS_DIR = "$(SRCBASE)/deps";
-				DEVELOPMENT_TEAM = UK699V5ZS8;
+				DEVELOPMENT_TEAM = 7D4344PZ7V;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1757,13 +1913,91 @@
 				MARKETING_VERSION = 1.16.0;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "$(inherited)";
-				"OTHER_CFLAGS[sdk=appletvos*]" = (
+				OTHER_CFLAGS = (
+					"-DDONT_WANT_ARM_OPTIMIZATIONS",
+					"-DENABLE_HLSL",
+					"-DGLES_SILENCE_DEPRECATION",
+					"-DGLSLANG_OSINCLUDE_UNIX",
+					"-DHAVE_7ZIP",
+					"-DHAVE_AL",
+					"-DHAVE_ALTKIT",
+					"-DHAVE_AUDIOMIXER",
+					"-DHAVE_BTSTACK",
+					"-DHAVE_BUILTINGLSLANG",
+					"-DHAVE_BUILTINMBEDTLS",
+					"-DHAVE_BUILTINMINIUPNPC",
+					"-DHAVE_CC_RESAMPLER",
+					"-DHAVE_CHD",
+					"-DHAVE_CHEATS",
+					"-DHAVE_CHEEVOS",
+					"-DHAVE_CLOUDSYNC",
+					"-DHAVE_COCOATOUCH",
+					"-DHAVE_COCOA_METAL",
+					"-DHAVE_CONFIGFILE",
+					"-DHAVE_COREAUDIO",
+					"-DHAVE_DSP_FILTER",
+					"-DHAVE_DYNAMIC",
+					"-DHAVE_FILTERS_BUILTIN",
+					"-DHAVE_GFX_WIDGETS",
+					"-DHAVE_GLSL",
+					"-DHAVE_GLSLANG",
+					"-DHAVE_GRIFFIN",
+					"-DHAVE_HID",
+					"-DHAVE_IFINFO",
+					"-DHAVE_IMAGEVIEWER",
+					"-DHAVE_KEYMAPPER",
+					"-DHAVE_LANGEXTRA",
+					"-DHAVE_LIBRETRODB",
+					"-DHAVE_MAIN",
+					"-DHAVE_MENU",
+					"-DHAVE_METAL",
+					"-DHAVE_MFI",
+					"-DHAVE_MINIUPNPC",
+					"-DHAVE_NETPLAYDISCOVERY",
+					"-DHAVE_NETPLAYDISCOVERY_NSNET",
+					"-DHAVE_NETWORKGAMEPAD",
+					"-DHAVE_NETWORKING",
+					"-DHAVE_ONLINE_UPDATER",
+					"-DHAVE_OPENGL",
+					"-DHAVE_OPENGLES",
+					"-DHAVE_OPENGLES2",
+					"-DHAVE_OZONE",
+					"-DHAVE_PATCH",
+					"-DHAVE_RBMP",
+					"-DHAVE_REWIND",
+					"-DHAVE_RGUI",
+					"-DHAVE_RJPEG",
+					"-DHAVE_RPNG",
+					"-DHAVE_RTGA",
+					"-DHAVE_BSV_MOVIE",
+					"-DHAVE_RUNAHEAD",
+					"-DHAVE_RWAV",
+					"-DHAVE_SCREENSHOTS",
+					"-DHAVE_SHADERPIPELINE",
+					"-DHAVE_SLANG",
+					"-DHAVE_SPIRV_CROSS",
+					"-DHAVE_SSL",
+					"-DHAVE_STB_FONT",
+					"-DHAVE_STB_VORBIS",
+					"-DHAVE_THREADS",
+					"-DHAVE_TRANSLATE",
+					"-DHAVE_UPDATE_ASSETS",
+					"-DHAVE_UPDATE_CORE_INFO",
+					"-DHAVE_VIDEO_FILTER",
 					"-DHAVE_VULKAN",
-					"$(inherited)",
+					"-DHAVE_XMB",
+					"-DHAVE_ZLIB",
+					"-DINLINE=inline",
+					"-DIOS",
+					"-DRARCH_INTERNAL",
+					"-DRARCH_MOBILE",
+					"-DRC_DISABLE_LUA",
+					"-DWANT_GLSLANG",
+					"-D_7ZIP_ST",
+					"-D_LZMA_UINT32_IS_ULONG",
+					"-D__LIBRETRO__",
 				);
-				"OTHER_CFLAGS[sdk=appletvsimulator*]" = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.libretro.dist.tvos.RetroArch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.libretro.dist.tvos.RetroArch.fellowgeek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -1807,7 +2041,7 @@
 				CURRENT_PROJECT_VERSION = 1.16.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPS_DIR = "$(SRCBASE)/deps";
-				DEVELOPMENT_TEAM = UK699V5ZS8;
+				DEVELOPMENT_TEAM = 7D4344PZ7V;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1846,13 +2080,93 @@
 				MARKETING_VERSION = 1.16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_CFLAGS = "$(inherited)";
-				"OTHER_CFLAGS[sdk=appletvos*]" = (
+				OTHER_CFLAGS = (
+					"-DDONT_WANT_ARM_OPTIMIZATIONS",
+					"-DENABLE_HLSL",
+					"-DGLES_SILENCE_DEPRECATION",
+					"-DGLSLANG_OSINCLUDE_UNIX",
+					"-DHAVE_7ZIP",
+					"-DHAVE_AL",
+					"-DHAVE_ALTKIT",
+					"-DHAVE_AUDIOMIXER",
+					"-DHAVE_BTSTACK",
+					"-DHAVE_BUILTINGLSLANG",
+					"-DHAVE_BUILTINMBEDTLS",
+					"-DHAVE_BUILTINMINIUPNPC",
+					"-DHAVE_CC_RESAMPLER",
+					"-DHAVE_CHD",
+					"-DHAVE_CHEATS",
+					"-DHAVE_CHEEVOS",
+					"-DHAVE_CLOUDSYNC",
+					"-DHAVE_COCOATOUCH",
+					"-DHAVE_COCOA_METAL",
+					"-DHAVE_CONFIGFILE",
+					"-DHAVE_COREAUDIO",
+					"-DHAVE_DSP_FILTER",
+					"-DHAVE_DYNAMIC",
+					"-DHAVE_FILTERS_BUILTIN",
+					"-DHAVE_GFX_WIDGETS",
+					"-DHAVE_GLSL",
+					"-DHAVE_GLSLANG",
+					"-DHAVE_GRIFFIN",
+					"-DHAVE_HID",
+					"-DHAVE_IFINFO",
+					"-DHAVE_IMAGEVIEWER",
+					"-DHAVE_KEYMAPPER",
+					"-DHAVE_LANGEXTRA",
+					"-DHAVE_LIBRETRODB",
+					"-DHAVE_MAIN",
+					"-DHAVE_MENU",
+					"-DHAVE_METAL",
+					"-DHAVE_MFI",
+					"-DHAVE_MINIUPNPC",
+					"-DHAVE_NETPLAYDISCOVERY",
+					"-DHAVE_NETPLAYDISCOVERY_NSNET",
+					"-DHAVE_NETWORKGAMEPAD",
+					"-DHAVE_NETWORKING",
+					"-DHAVE_ONLINE_UPDATER",
+					"-DHAVE_OPENGL",
+					"-DHAVE_OPENGLES",
+					"-DHAVE_OPENGLES2",
+					"-DHAVE_OZONE",
+					"-DHAVE_PATCH",
+					"-DHAVE_RBMP",
+					"-DHAVE_REWIND",
+					"-DHAVE_RGUI",
+					"-DHAVE_RJPEG",
+					"-DHAVE_RPNG",
+					"-DHAVE_RTGA",
+					"-DHAVE_BSV_MOVIE",
+					"-DHAVE_RUNAHEAD",
+					"-DHAVE_RWAV",
+					"-DHAVE_SCREENSHOTS",
+					"-DHAVE_SHADERPIPELINE",
+					"-DHAVE_SLANG",
+					"-DHAVE_SPIRV_CROSS",
+					"-DHAVE_SSL",
+					"-DHAVE_STB_FONT",
+					"-DHAVE_STB_VORBIS",
+					"-DHAVE_THREADS",
+					"-DHAVE_TRANSLATE",
+					"-DHAVE_UPDATE_ASSETS",
+					"-DHAVE_UPDATE_CORE_INFO",
+					"-DHAVE_VIDEO_FILTER",
 					"-DHAVE_VULKAN",
-					"$(inherited)",
+					"-DHAVE_XMB",
+					"-DHAVE_ZLIB",
+					"-DINLINE=inline",
+					"-DIOS",
+					"-DNDEBUG",
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-DRARCH_INTERNAL",
+					"-DRARCH_MOBILE",
+					"-DRC_DISABLE_LUA",
+					"-DWANT_GLSLANG",
+					"-D_7ZIP_ST",
+					"-D_LZMA_UINT32_IS_ULONG",
+					"-D__LIBRETRO__",
 				);
-				"OTHER_CFLAGS[sdk=appletvsimulator*]" = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.libretro.dist.tvos.RetroArch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.libretro.dist.tvos.RetroArch.fellowgeek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -1915,7 +2229,6 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../../Frameworks",
-					"@executable_path/../../modules",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/iOS/modules";
 				MARKETING_VERSION = 1.16.0;
@@ -1986,7 +2299,6 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../../Frameworks",
-					"@executable_path/../../modules",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/iOS/modules";
 				MARKETING_VERSION = 1.16.0;
@@ -1995,8 +2307,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.libretro.RetroArchiOS11.RetroArchWidgetExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2037,86 +2350,53 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
 					"-DDONT_WANT_ARM_OPTIMIZATIONS",
-					"-DENABLE_HLSL",
-					"-DGLES_SILENCE_DEPRECATION",
-					"-DGLSLANG_OSINCLUDE_UNIX",
-					"-DHAVE_7ZIP",
-					"-DHAVE_AL",
-					"-DHAVE_ALTKIT",
-					"-DHAVE_AUDIOMIXER",
-					"-DHAVE_BTSTACK",
-					"-DHAVE_BUILTINGLSLANG",
-					"-DHAVE_BUILTINMBEDTLS",
-					"-DHAVE_BUILTINMINIUPNPC",
-					"-DHAVE_CC_RESAMPLER",
-					"-DHAVE_CHD",
-					"-DHAVE_CHEATS",
-					"-DHAVE_CHEEVOS",
-					"-DHAVE_CLOUDSYNC",
-					"-DHAVE_COCOATOUCH",
-					"-DHAVE_COCOA_METAL",
-					"-DHAVE_CONFIGFILE",
-					"-DHAVE_COREAUDIO",
-					"-DHAVE_DSP_FILTER",
-					"-DHAVE_DYNAMIC",
-					"-DHAVE_FILTERS_BUILTIN",
-					"-DHAVE_GFX_WIDGETS",
-					"-DHAVE_GLSL",
-					"-DHAVE_GLSLANG",
-					"-DHAVE_GRIFFIN",
-					"-DHAVE_HID",
-					"-DHAVE_IFINFO",
-					"-DHAVE_IMAGEVIEWER",
-					"-DHAVE_KEYMAPPER",
-					"-DHAVE_LANGEXTRA",
-					"-DHAVE_LIBRETRODB",
-					"-DHAVE_MAIN",
-					"-DHAVE_MENU",
-					"-DHAVE_METAL",
-					"-DHAVE_MFI",
-					"-DHAVE_MINIUPNPC",
-					"-DHAVE_NETPLAYDISCOVERY",
-					"-DHAVE_NETPLAYDISCOVERY_NSNET",
 					"-DHAVE_NETWORKGAMEPAD",
+					"-DHAVE_STB_FONT",
+					"-DHAVE_HID",
 					"-DHAVE_NETWORKING",
-					"-DHAVE_ONLINE_UPDATER",
-					"-DHAVE_OPENGL",
-					"-DHAVE_OPENGLES",
-					"-DHAVE_OPENGLES2",
-					"-DHAVE_OZONE",
-					"-DHAVE_PATCH",
-					"-DHAVE_RBMP",
-					"-DHAVE_REWIND",
-					"-DHAVE_RGUI",
-					"-DHAVE_RJPEG",
-					"-DHAVE_RPNG",
-					"-DHAVE_RTGA",
+					"-DHAVE_IFINFO",
+					"-DHAVE_NETPLAYDISCOVERY",
 					"-DHAVE_BSV_MOVIE",
 					"-DHAVE_RUNAHEAD",
-					"-DHAVE_RWAV",
-					"-DHAVE_SCREENSHOTS",
-					"-DHAVE_SHADERPIPELINE",
-					"-DHAVE_SLANG",
-					"-DHAVE_SPIRV_CROSS",
-					"-DHAVE_SSL",
-					"-DHAVE_STB_FONT",
-					"-DHAVE_STB_VORBIS",
-					"-DHAVE_THREADS",
 					"-DHAVE_TRANSLATE",
+					"-DHAVE_GRIFFIN",
+					"-DHAVE_STB_VORBIS",
+					"-DHAVE_MINIUPNPC",
+					"-DHAVE_BUILTINMINIUPNPC",
 					"-DHAVE_UPDATE_ASSETS",
-					"-DHAVE_UPDATE_CORE_INFO",
-					"-DHAVE_VIDEO_FILTER",
-					"-DHAVE_XMB",
-					"-DHAVE_ZLIB",
-					"-DINLINE=inline",
-					"-DIOS",
-					"-DRARCH_INTERNAL",
-					"-DRARCH_MOBILE",
+					"-DHAVE_ONLINE_UPDATER",
+					"-DHAVE_LANGEXTRA",
+					"-DHAVE_CHEEVOS",
 					"-DRC_DISABLE_LUA",
-					"-DWANT_GLSLANG",
-					"-D_7ZIP_ST",
-					"-D_LZMA_UINT32_IS_ULONG",
+					"-DHAVE_IMAGEVIEWER",
+					"-DHAVE_RGUI",
+					"-DHAVE_CONFIGFILE",
+					"-DHAVE_MENU",
+					"-DHAVE_GFX_WIDGETS",
+					"-DHAVE_LIBRETRODB",
+					"-DHAVE_AUDIOMIXER",
+					"-DIOS",
+					"-DHAVE_DYNAMIC",
+					"-DHAVE_OPENGL",
+					"-DHAVE_OPENGLES",
+					"-DHAVE_OPENGLES3",
+					"-DHAVE_CC_RESAMPLER",
+					"-DHAVE_GLSL",
+					"-DINLINE=inline",
+					"-DHAVE_THREADS",
 					"-D__LIBRETRO__",
+					"-DRARCH_MOBILE",
+					"-std=gnu99",
+					"-DHAVE_COREAUDIO",
+					"-DHAVE_OVERLAY",
+					"-DHAVE_ZLIB",
+					"-DHAVE_RPNG",
+					"-DHAVE_RJPEG",
+					"-DHAVE_RBMP",
+					"-DHAVE_RTGA",
+					"-DHAVE_COCOATOUCH",
+					"-DHAVE_MAIN",
+					"-DHAVE_VULKAN",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-Wl,-segalign,4000";
 				SDKROOT = iphoneos;
@@ -2153,89 +2433,55 @@
 				MTL_FAST_MATH = YES;
 				MTL_IGNORE_WARNINGS = YES;
 				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-DNDEBUG",
 					"-DDONT_WANT_ARM_OPTIMIZATIONS",
-					"-DENABLE_HLSL",
-					"-DGLES_SILENCE_DEPRECATION",
-					"-DGLSLANG_OSINCLUDE_UNIX",
-					"-DHAVE_7ZIP",
-					"-DHAVE_AL",
-					"-DHAVE_ALTKIT",
-					"-DHAVE_AUDIOMIXER",
-					"-DHAVE_BTSTACK",
-					"-DHAVE_BUILTINGLSLANG",
-					"-DHAVE_BUILTINMBEDTLS",
-					"-DHAVE_BUILTINMINIUPNPC",
-					"-DHAVE_CC_RESAMPLER",
-					"-DHAVE_CHD",
-					"-DHAVE_CHEATS",
-					"-DHAVE_CHEEVOS",
-					"-DHAVE_CLOUDSYNC",
-					"-DHAVE_COCOATOUCH",
-					"-DHAVE_COCOA_METAL",
-					"-DHAVE_CONFIGFILE",
-					"-DHAVE_COREAUDIO",
-					"-DHAVE_DSP_FILTER",
-					"-DHAVE_DYNAMIC",
-					"-DHAVE_FILTERS_BUILTIN",
-					"-DHAVE_GFX_WIDGETS",
-					"-DHAVE_GLSL",
-					"-DHAVE_GLSLANG",
-					"-DHAVE_GRIFFIN",
-					"-DHAVE_HID",
-					"-DHAVE_IFINFO",
-					"-DHAVE_IMAGEVIEWER",
-					"-DHAVE_KEYMAPPER",
-					"-DHAVE_LANGEXTRA",
-					"-DHAVE_LIBRETRODB",
-					"-DHAVE_MAIN",
-					"-DHAVE_MENU",
-					"-DHAVE_METAL",
-					"-DHAVE_MFI",
-					"-DHAVE_MINIUPNPC",
-					"-DHAVE_NETPLAYDISCOVERY",
-					"-DHAVE_NETPLAYDISCOVERY_NSNET",
 					"-DHAVE_NETWORKGAMEPAD",
+					"-DHAVE_STB_FONT",
+					"-DHAVE_HID",
 					"-DHAVE_NETWORKING",
-					"-DHAVE_ONLINE_UPDATER",
-					"-DHAVE_OPENGL",
-					"-DHAVE_OPENGLES",
-					"-DHAVE_OPENGLES2",
-					"-DHAVE_OZONE",
-					"-DHAVE_PATCH",
-					"-DHAVE_RBMP",
-					"-DHAVE_REWIND",
-					"-DHAVE_RGUI",
-					"-DHAVE_RJPEG",
-					"-DHAVE_RPNG",
-					"-DHAVE_RTGA",
+					"-DHAVE_IFINFO",
+					"-DHAVE_NETPLAYDISCOVERY",
 					"-DHAVE_BSV_MOVIE",
 					"-DHAVE_RUNAHEAD",
-					"-DHAVE_RWAV",
-					"-DHAVE_SCREENSHOTS",
-					"-DHAVE_SHADERPIPELINE",
-					"-DHAVE_SLANG",
-					"-DHAVE_SPIRV_CROSS",
-					"-DHAVE_SSL",
-					"-DHAVE_STB_FONT",
-					"-DHAVE_STB_VORBIS",
-					"-DHAVE_THREADS",
 					"-DHAVE_TRANSLATE",
+					"-DHAVE_GRIFFIN",
+					"-DHAVE_STB_VORBIS",
+					"-DHAVE_MINIUPNPC",
+					"-DHAVE_BUILTINMINIUPNPC",
 					"-DHAVE_UPDATE_ASSETS",
-					"-DHAVE_UPDATE_CORE_INFO",
-					"-DHAVE_VIDEO_FILTER",
-					"-DHAVE_XMB",
-					"-DHAVE_ZLIB",
-					"-DINLINE=inline",
-					"-DIOS",
-					"-DNDEBUG",
-					"-DNS_BLOCK_ASSERTIONS=1",
-					"-DRARCH_INTERNAL",
-					"-DRARCH_MOBILE",
+					"-DHAVE_ONLINE_UPDATER",
+					"-DHAVE_LANGEXTRA",
+					"-DHAVE_CHEEVOS",
 					"-DRC_DISABLE_LUA",
-					"-DWANT_GLSLANG",
-					"-D_7ZIP_ST",
-					"-D_LZMA_UINT32_IS_ULONG",
+					"-DHAVE_IMAGEVIEWER",
+					"-DHAVE_RGUI",
+					"-DHAVE_CONFIGFILE",
+					"-DHAVE_MENU",
+					"-DHAVE_GFX_WIDGETS",
+					"-DHAVE_LIBRETRODB",
+					"-DHAVE_AUDIOMIXER",
+					"-DIOS",
+					"-DHAVE_DYNAMIC",
+					"-DHAVE_OPENGL",
+					"-DHAVE_OPENGLES",
+					"-DHAVE_CC_RESAMPLER",
+					"-DHAVE_GLSL",
+					"-DINLINE=inline",
+					"-DHAVE_THREADS",
 					"-D__LIBRETRO__",
+					"-DRARCH_MOBILE",
+					"-std=gnu99",
+					"-DHAVE_COREAUDIO",
+					"-DHAVE_OVERLAY",
+					"-DHAVE_ZLIB",
+					"-DHAVE_RPNG",
+					"-DHAVE_RJPEG",
+					"-DHAVE_RBMP",
+					"-DHAVE_RTGA",
+					"-DHAVE_COCOATOUCH",
+					"-DHAVE_MAIN",
+					"-DHAVE_VULKAN",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-Wl,-segalign,4000";
 				SDKROOT = iphoneos;
