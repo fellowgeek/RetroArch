@@ -11,7 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WebServer : NSObject
+@interface WebServer : NSObject {
+   NSString* docsPath;
+}
 
 @property (nonatomic,readonly,strong) GCDWebUploader* webUploader;
 

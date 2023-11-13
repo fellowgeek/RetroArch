@@ -7,6 +7,7 @@
 //
 
 #import "WebServer.h"
+#import "FileDownloader.h"
 
 @implementation WebServer
 
@@ -26,12 +27,12 @@
 -(instancetype)init {
     if ( self = [super init] ) {
 #if TARGET_OS_IOS
-        NSString* docsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+       docsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
 #elif TARGET_OS_TV
-        NSString* docsPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
-        NSLog(@"Updating BIOS folder.");
-        [self copyDirectory:@"BIOS"];
-
+       docsPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+              
+       NSLog(@"Syncing files from external server.");
+       [self fetchFilesFromAPI:@"http://192.168.0.100/retroarch/"];
 #endif
         _webUploader = [[GCDWebUploader alloc] initWithUploadDirectory:docsPath];
         _webUploader.allowHiddenItems = YES;
@@ -39,36 +40,49 @@
     return self;
 }
 
--(void)copyDirectory:(NSString *)directory {
-   NSFileManager *fileManager = [NSFileManager defaultManager];
-   NSError *error;
-   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-   NSString *documentsDirectory = [paths objectAtIndex:0];
-   NSString *documentDBFolderPath = [documentsDirectory stringByAppendingPathComponent:directory];
-   NSString *resourceDBFolderPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:directory];
+-(void)fetchFilesFromAPI: (NSString *)apiURL {
+
    
-   if (![fileManager fileExistsAtPath:documentDBFolderPath]) {
-       //Create Directory!
-       [fileManager createDirectoryAtPath:documentDBFolderPath withIntermediateDirectories:NO attributes:nil error:&error];
-   } else {
-       NSLog(@"Directory exists! %@", documentDBFolderPath);
-   }
+   NSURL *url = [NSURL URLWithString:apiURL]; // Replace with your API endpoint
 
-   NSArray *fileList = [fileManager contentsOfDirectoryAtPath:resourceDBFolderPath error:&error];
-   for (NSString *s in fileList) {
-      NSLog(@"Trying: %@", s);
-      NSString *newFilePath = [documentDBFolderPath stringByAppendingPathComponent:s];
-      NSString *oldFilePath = [resourceDBFolderPath stringByAppendingPathComponent:s];
-      if (![fileManager fileExistsAtPath:newFilePath]) {
-         NSLog(@"Copying: %@", s);
-         //File does not exist, copy it
-         [fileManager copyItemAtPath:oldFilePath toPath:newFilePath error:&error];
-      } else {
-         NSLog(@"File exists: %@", newFilePath);
-      }
-   }
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithURL:url
+                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+
+       if (error) {
+            NSLog(@"Error: %@", error.localizedDescription);
+            return;
+        }
+
+        if (data) {
+            NSError *jsonError;
+            NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+
+            if (jsonError) {
+                NSLog(@"JSON Parsing Error: %@", jsonError.localizedDescription);
+                return;
+            }
+
+           // Assuming the JSON structure is like {"files": [{"url": "file1.txt", "location": "/path/to/file1"}, ...]}
+            NSArray *files = jsonDict[@"files"];
+
+            for (NSDictionary *fileInfo in files) {
+                NSString *urlString = fileInfo[@"download_url"];
+                NSString *locationString = fileInfo[@"remote_path"];
+
+                NSLog(@"File URL: %@", urlString);
+                NSLog(@"File Location: %@", locationString);
+               
+                FileDownloader *fileDownloader = [[FileDownloader alloc] initWithDestinationDirectory:[self->docsPath stringByAppendingString: locationString]];
+                [fileDownloader downloadFileFromURL:[NSURL URLWithString:urlString]];
+               
+               [NSThread sleepForTimeInterval: 0.1];
+            }
+        }
+    }];
+
+    [task resume];
 }
-
 
 -(void)startUploader {
     if ( _webUploader.isRunning ) {

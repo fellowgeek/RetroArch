@@ -112,8 +112,8 @@
 		92E5DCD4231A5786006491BF /* modules in Resources */ = {isa = PBXBuildFile; fileRef = 92E5DCD3231A5786006491BF /* modules */; };
 		92EDD1632982E40C00AD33B4 /* libMoltenVK.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 92EDD1622982E40C00AD33B4 /* libMoltenVK.dylib */; };
 		92EDD1642982E40D00AD33B4 /* libMoltenVK.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 92EDD1622982E40C00AD33B4 /* libMoltenVK.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		E209904C2AFF169C000EDE25 /* BIOS in Resources */ = {isa = PBXBuildFile; fileRef = E209904B2AFF169C000EDE25 /* BIOS */; };
-		E209904D2AFF169C000EDE25 /* BIOS in Resources */ = {isa = PBXBuildFile; fileRef = E209904B2AFF169C000EDE25 /* BIOS */; };
+		E23653842B01B12F00254760 /* FileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = E23653832B01B12F00254760 /* FileDownloader.m */; };
+		E23653852B01B12F00254760 /* FileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = E23653832B01B12F00254760 /* FileDownloader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -451,7 +451,8 @@
 		96AFAE2D16C1D4EA009DE44C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		96AFAE2F16C1D4EA009DE44C /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		96AFAE3116C1D4EA009DE44C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		E209904B2AFF169C000EDE25 /* BIOS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BIOS; sourceTree = "<group>"; };
+		E23653822B01B11900254760 /* FileDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileDownloader.h; sourceTree = "<group>"; };
+		E23653832B01B12F00254760 /* FileDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1147,6 +1148,8 @@
 				92CC05C121FE3C6D00FF79F0 /* WebServer.m */,
 				92CC057E21FE3C1700FF79F0 /* GCDWebServer */,
 				92CC059E21FE3C1700FF79F0 /* GCDWebUploader */,
+				E23653822B01B11900254760 /* FileDownloader.h */,
+				E23653832B01B12F00254760 /* FileDownloader.m */,
 			);
 			path = WebServer;
 			sourceTree = "<group>";
@@ -1154,7 +1157,6 @@
 		96AFAE1A16C1D4EA009DE44C = {
 			isa = PBXGroup;
 			children = (
-				E209904B2AFF169C000EDE25 /* BIOS */,
 				0789FC2D2A07845300D042B7 /* Packages */,
 				96AFAE9C16C1D976009DE44C /* Main Entry Core */,
 				92B9EAE024E04F8800E6CFB2 /* Sources */,
@@ -1369,7 +1371,6 @@
 				9222F2092315DAD50097C0FD /* Launch Screen.storyboard in Resources */,
 				9204BE231D319EF300BD49DB /* InfoPlist.strings in Resources */,
 				92CC05BC21FE3C1700FF79F0 /* GCDWebUploader.bundle in Resources */,
-				E209904C2AFF169C000EDE25 /* BIOS in Resources */,
 				9222F20B2315DD3D0097C0FD /* retroarch_logo.png in Resources */,
 				929784502200EEE400989A60 /* iOS/Resources/Media.xcassets in Resources */,
 				9204BE261D319EF300BD49DB /* iOS/modules in Resources */,
@@ -1382,7 +1383,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				07B7872D29E8FE8F0088B74F /* filters in Resources */,
-				E209904D2AFF169C000EDE25 /* BIOS in Resources */,
 				92CC05BD21FE3C1700FF79F0 /* GCDWebUploader.bundle in Resources */,
 				92E5DCD4231A5786006491BF /* modules in Resources */,
 				9222F2002314BA7C0097C0FD /* assets.zip in Resources */,
@@ -1475,6 +1475,7 @@
 				928F7B2527D1952500377C40 /* EmulatorKeyboardButton.swift in Sources */,
 				9289D20A25E40D7B004B5D52 /* EmulatorKeyboardView.swift in Sources */,
 				92CC05B221FE3C1700FF79F0 /* GCDWebServerStreamedResponse.m in Sources */,
+				E23653842B01B12F00254760 /* FileDownloader.m in Sources */,
 				92CC05A221FE3C1700FF79F0 /* GCDWebServerResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1487,6 +1488,7 @@
 				92CC05A521FE3C1700FF79F0 /* GCDWebServerRequest.m in Sources */,
 				92CC05AB21FE3C1700FF79F0 /* GCDWebServerConnection.m in Sources */,
 				92CC05BF21FE3C1700FF79F0 /* GCDWebUploader.m in Sources */,
+				E23653852B01B12F00254760 /* FileDownloader.m in Sources */,
 				92CC05B721FE3C1700FF79F0 /* GCDWebServerMultiPartFormRequest.m in Sources */,
 				92CC05AD21FE3C1700FF79F0 /* GCDWebServerErrorResponse.m in Sources */,
 				92CC05A721FE3C1700FF79F0 /* GCDWebServerFunctions.m in Sources */,
