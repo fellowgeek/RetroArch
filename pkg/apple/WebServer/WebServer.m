@@ -30,7 +30,7 @@
        docsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
 #elif TARGET_OS_TV
        docsPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
-              
+
        NSLog(@"Syncing files from external server.");
        [self fetchFilesFromAPI:@"http://192.168.0.100/retroarch/"];
 #endif
@@ -42,7 +42,7 @@
 
 -(void)fetchFilesFromAPI: (NSString *)apiURL {
 
-   
+
    NSURL *url = [NSURL URLWithString:apiURL]; // Replace with your API endpoint
 
     NSURLSession *session = [NSURLSession sharedSession];
@@ -63,7 +63,7 @@
                 return;
             }
 
-           // Assuming the JSON structure is like {"files": [{"url": "file1.txt", "location": "/path/to/file1"}, ...]}
+           // Assuming the JSON structure is like {"files": [{"download_url": "http://example.com/file1.bin", "remote_path": "/path/to/file1.bin"}, ...]}
             NSArray *files = jsonDict[@"files"];
 
             for (NSDictionary *fileInfo in files) {
@@ -72,10 +72,10 @@
 
                 NSLog(@"File URL: %@", urlString);
                 NSLog(@"File Location: %@", locationString);
-               
+
                 FileDownloader *fileDownloader = [[FileDownloader alloc] initWithDestinationDirectory:[self->docsPath stringByAppendingString: locationString]];
                 [fileDownloader downloadFileFromURL:[NSURL URLWithString:urlString]];
-               
+
                [NSThread sleepForTimeInterval: 0.1];
             }
         }

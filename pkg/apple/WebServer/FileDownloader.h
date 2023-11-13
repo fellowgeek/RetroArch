@@ -3,7 +3,6 @@
 //  RetroArch_iOS13
 //
 //  Created by Erfan Reed on 11/12/23.
-//  Copyright © 2023 RetroArch. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
